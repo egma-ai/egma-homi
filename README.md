@@ -1,7 +1,7 @@
 # egma-homi
 
-An open decion-model that answers typed questions about audio (inspried by Jev). Give it a clip and a question; it returns a probability for
-every option.
+An open decision model that answers typed questions about audio (inspired by Jev). Give it a clip and a question; it
+returns a probability for every option.
 
 - `noul`: yes/no, returns P(yes)
 - `choice`: 2 to 255 options, returns a probability per option
