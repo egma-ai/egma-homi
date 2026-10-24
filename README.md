@@ -1,6 +1,6 @@
 # egma-homi
 
-An open model that answers typed questions about audio. Give it a clip and a question; it returns a probability for
+An open decion-model that answers typed questions about audio (inspried by Jev). Give it a clip and a question; it returns a probability for
 every option.
 
 - `noul`: yes/no, returns P(yes)
