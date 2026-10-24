@@ -1,0 +1,48 @@
+{
+  "benchmarks": {
+    "vocalgrad": {
+      "repo": "ynklab/vocalgrad",
+      "revision": "00e66e7aef76a453b3c98eeadd6c7ca7ced0cf78",
+      "licence": "CC BY 4.0",
+      "subset": "categories voice_pitch, speaking_speed, volume (all items)",
+      "items": 7200,
+      "truth_sha256": "54f65475e9672558cc598c26e119891fe996da44538e0a4440c37c447f4cb582",
+      "notes": "trailing sentence 'Answer with only one word: \"increase\" or \"decrease\".' removed from every question (clashes with the shared answer-format line); original kept in truth.prompt_orig"
+    },
+    "voxparadox": {
+      "repo": "IHP-Lab/VoxParadox",
+      "revision": "49e3119ff4ce73ad879ab8d8924f0b7a7532222e",
+      "licence": "USC Research License (research / non-profit)",
+      "subset": "all 10 tasks, all items",
+      "items": 2000,
+      "truth_sha256": "0f20f0a80c4547b9ff0a8f24ca3e9ed2c9a177f519c6a72c9ea95996b65d88f6",
+      "notes": "gender items' two 'null' placeholder options dropped (2-way); mapping in truth.published_letters"
+    },
+    "msubench": {
+      "repo": "ASLP-lab/MSU-Benchmark",
+      "revision": "2f3a07acd713a60cb105d8bb09d3c47867466802",
+      "licence": "CC BY-NC 4.0",
+      "subset": "language=en and verified=true; Tier 1 and Tier 2 reported separately",
+      "items": 971,
+      "truth_sha256": "f47d5cb0fbfb6d4a2e31e2a3ef88d58aacce352409c242bcc738bbeadd93be87",
+      "notes": "English + human-verified only; audio per the authors' question_builder.py; 107 items needing two separate audios skipped (77 sample+conversation, 30 speaker verification); tier from the dataset's own field; option text unchanged (incl. translation glitches)"
+    }
+  },
+  "models": {
+    "egma-homi": "this release (adapter_model.safetensors sha256 428ba9ead7d6b8567721d109f1213f71ffb04cb26e27f5f9b4deba202213ac10)",
+    "qwen-stock": "Qwen/Qwen3-Omni-30B-A3B-Instruct @ 26291f793822fb6be9555850f06dfe95f2d7e695, no adapter",
+    "gemini-3.8-flash": "Gemini API, paid tier",
+    "gemini-3.5-flash-lite": "Gemini API, paid tier",
+    "gpt-audio": "OpenAI Chat Completions, model gpt-audio (snapshot gpt-audio-2025-08-28)"
+  },
+  "protocol": {
+    "question": "each benchmark's own question and options, published order, lettered A, B, ...",
+    "our_models": "decision head over the option codes; answer = highest probability (eval/modal_eval.py)",
+    "api_models_prompt_function": "def _mmsu_prompt(t: dict) -> str:\n    opts = \"\\n\".join(f\"{LETTERS[i]}) {o}\" for i, o in enumerate(t[\"options\"]))\n    keys = \", \".join(f'\"{LETTERS[i]}\": <number>' for i in range(len(t[\"options\"])))\n    return (\"You are listening to an audio clip. Answer the multiple-choice question about the AUDIO. Give a probability \"\n            \"for EVERY option (numbers between 0 and 1 that sum to 1) and the single best option.\\n\\n\"\n            f\"Question: {t['question']}\\nOptions:\\n{opts}\\n\\n\"\n            'Reply with JSON only, in this shape: {\"answer\": \"<letter>\", \"probabilities\": {' + keys + \"}}\")",
+    "api_audio_order": "audio first, then the prompt (same for Gemini and OpenAI)",
+    "openai_system_line": "\"You are an audio analysis assistant. Each user message contains an audio recording, which you can hear. \"\n                 \"Listen to it and answer the question about it in the requested JSON format.\"",
+    "openai_format_retries": "up to 2 re-asks when a reply contains no answer; still none = recorded as 'no answer'",
+    "scoring": "accuracy; unanswered/refused counts as wrong (main score). Also reported: accuracy on answered questions, refusals per task, chance level, 95% interval, per-task accuracy, cost per 10k questions",
+    "runs": "each model once per benchmark"
+  }
+}

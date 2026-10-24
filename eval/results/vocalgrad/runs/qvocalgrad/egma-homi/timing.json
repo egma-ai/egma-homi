@@ -1,0 +1,7 @@
+{
+  "system": "v2.1",
+  "gpu": "NVIDIA H200",
+  "inference_seconds": 69.44,
+  "questions": 7200,
+  "calls": 7200
+}

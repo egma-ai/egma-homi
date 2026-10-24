@@ -1,0 +1,72 @@
+{
+ "n": 60,
+ "mean_wer": 0.035,
+ "median_wer": 0.0,
+ "n_wer_gt_0.3": 1,
+ "worst": [
+  {
+   "cls": "live_person",
+   "voice": "af_sarah",
+   "channel": "phone",
+   "wer": 0.75,
+   "ref": "Um, hi, who's this?",
+   "hyp": " I'm high heat this"
+  },
+  {
+   "cls": "business_ivr",
+   "voice": "bf_isabella",
+   "channel": "phone",
+   "wer": 0.15,
+   "ref": "Hello, and thanks for calling Cedar Grove Eye Care. Please listen carefully, as our menu options have changed. Press one for store hours. Press two for billing questions. Press three for new customers. To check on an order, press four.",
+   "hyp": " Hello and thanks for calling Cedar Grove iCare. Please listen carefully as our menu options have changed. Press 1 for store hours. Press 2 for billing questions. Press 3 for new customers. To check on an order press 4."
+  },
+  {
+   "cls": "business_ivr",
+   "voice": "bf_emma",
+   "channel": "phone",
+   "wer": 0.133,
+   "ref": "Hello, and thanks for calling Brookfield Law Office. For directions, press one. To schedule an appointment, press two. Press three for prescription refills. To reach the front desk, press four.",
+   "hyp": " Hello and thanks for calling Brookfield Law Office. For directions press 1. To schedule an appointment press 2. Press 3 for prescription refills. To reach the front desk press 4."
+  },
+  {
+   "cls": "business_ivr",
+   "voice": "am_liam",
+   "channel": "phone",
+   "wer": 0.13,
+   "ref": "Thank you for calling Fairmont Bakery. For new customers, press one. For billing questions, press two. To reach the front desk, press three.",
+   "hyp": " Thank you for calling Fairmont Bakery. For new customers, press 1. For billing questions, press 2. To reach the front desk, press 3."
+  },
+  {
+   "cls": "business_ivr",
+   "voice": "am_fenrir",
+   "channel": "phone",
+   "wer": 0.125,
+   "ref": "You have reached Riverside Auto Repair. Please choose from the following options. Press one for our mailing address. For store hours, press two. For appointments, press three. For general questions, press four.",
+   "hyp": " You have reached Riverside Auto Repair. Please choose from the following options. Press 1 for our mailing address. For store hours, press 2. For appointments, press 3. For general questions, press 4."
+  },
+  {
+   "cls": "business_ivr",
+   "voice": "am_michael",
+   "channel": "phone",
+   "wer": 0.122,
+   "ref": "Hello, and thanks for calling Maple Street Eye Care. To speak with a representative, press one. To hear these options again, press two. Press three for directions. For our mailing address, press four. To speak with a team member, press zero.",
+   "hyp": " Hello and thanks for calling Maple Street Eye Care. To speak with a representative press 1. To hear these options again press 2. Press 3 for directions. For our mailing address press 4. To speak with a team member press 0."
+  },
+  {
+   "cls": "business_ivr",
+   "voice": "af_sky",
+   "channel": "phone",
+   "wer": 0.118,
+   "ref": "Welcome to Riverside Physical Therapy. To reach the front desk, press one. Press two for general questions.",
+   "hyp": " Welcome to Riverside Physical Therapy. To reach the front desk, press 1. Press 2 for general questions."
+  },
+  {
+   "cls": "carrier_voicemail",
+   "voice": "af_sarah",
+   "channel": "clean",
+   "wer": 0.111,
+   "ref": "Your call has been forwarded to an automated voice message system. When you are finished, simply hang up.",
+   "hyp": " Your call has been forwarded to an automated voice message system. When you're finished, simply hang up."
+  }
+ ]
+}

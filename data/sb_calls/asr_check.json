@@ -1,0 +1,72 @@
+{
+ "n": 80,
+ "mean_wer": 0.037,
+ "median_wer": 0.0,
+ "n_wer_gt_0.3": 0,
+ "worst": [
+  {
+   "cls": "business_ivr",
+   "voice": "af_sky",
+   "channel": "phone",
+   "wer": 0.24,
+   "ref": "Thank you for calling Oak Hill Eye Care. Please choose from the following options. Press one for billing questions. For hours and location, press two.",
+   "hyp": " Thank you for calling O'Kill iCare. Please choose from the following options. Press 1 for billing questions. For hours and location, press 2."
+  },
+  {
+   "cls": "live_person",
+   "voice": "af_sarah",
+   "channel": "phone",
+   "wer": 0.222,
+   "ref": "Uh, hello? Sorry, who's calling? Can you hear me?",
+   "hyp": " Us hellos. Sorry who's calling. Can you hear me?"
+  },
+  {
+   "cls": "business_ivr",
+   "voice": "bm_fable",
+   "channel": "clean",
+   "wer": 0.2,
+   "ref": "Hello, and thanks for calling Harbor View Bakery. Press one for billing questions. Press two for store hours. To speak with a representative, press three.",
+   "hyp": " Hello and thanks for calling Harbourview Bakery. Press 1 for billing questions. Press 2 for store hours. To speak with a representative, press 3."
+  },
+  {
+   "cls": "live_person",
+   "voice": "am_onyx",
+   "channel": "phone",
+   "wer": 0.167,
+   "ref": "Uh, hello? Can you hear me?",
+   "hyp": " Hello. Can you hear me?"
+  },
+  {
+   "cls": "live_person",
+   "voice": "bm_george",
+   "channel": "phone",
+   "wer": 0.167,
+   "ref": "Hello, who is this? Hmm, hello?",
+   "hyp": " Hello, who is this? Mmm, hello."
+  },
+  {
+   "cls": "personal_voicemail",
+   "voice": "af_jessica",
+   "channel": "phone",
+   "wer": 0.154,
+   "ref": "This is Nina's phone. I'm not available right now. Please leave a message.",
+   "hyp": " This is Mina's phone. I'm not available right now. Plays leave a message."
+  },
+  {
+   "cls": "business_ivr",
+   "voice": "af_river",
+   "channel": "phone",
+   "wer": 0.148,
+   "ref": "Welcome to Northgate Realty. For scheduling, press one. For new customers, press two. To schedule an appointment, press three. To speak with a team member, press zero.",
+   "hyp": " Welcome to Northgate Realty. For scheduling, press 1. For new customers, press 2. To schedule an appointment, press 3. To speak with a team member, press 0."
+  },
+  {
+   "cls": "business_ivr",
+   "voice": "bf_emma",
+   "channel": "phone",
+   "wer": 0.148,
+   "ref": "You have reached Sunnyvale Road Auto Repair. For scheduling, press one. For our mailing address, press two. Press three for prescription refills. For new customers, press four.",
+   "hyp": " You have reached Sunnyvale Road auto repair. For scheduling press 1. For our mailing address press 2. Press 3 for prescription refills. For new customers press 4."
+  }
+ ]
+}

@@ -1,0 +1,21 @@
+egma-homi (code)
+Copyright 2026 Outlier Humans Inc.
+
+This repository contains the code for egma-homi: inference, evaluation, training-data builders and training. It is
+licensed under the Apache License, Version 2.0 (see LICENSE). It contains no model weights and no training audio.
+The trained model (adapter, decision head, temperature) is published separately at
+https://huggingface.co/egma-ai/egma-homi with its own NOTICE and per-clip credits.
+
+The model runs on Qwen3-Omni-30B-A3B-Instruct by the Qwen team, Alibaba Cloud (Apache License, Version 2.0), which
+the code downloads from Hugging Face. The datasets, models and tools that the scripts download keep their own
+licences; see data/DATA.md and each builder's README.
+
+Third-party data files in this repository
+-----------------------------------------
+- data/sb_voice/crema_demographics.json: actor age and gender extracted from CREMA-D's VideoDemographics.csv
+  (Cao et al., 2014). This file is made available under the Open Database License (ODbL v1.0); its contents under the
+  Database Contents License (DbCL v1.0). It is not covered by the Apache License.
+- data/sb_voice/librispeech_speaker_gender.json and data/sb_count/librispeech_speaker_gender.json: reader gender from
+  LibriSpeech's SPEAKERS.TXT (Panayotov et al., 2015; CC BY 4.0), reader names removed.
+- data/sb_tasksource/task_licenses.json: licence fields of tasksource tasks, used to keep only commercially licensed,
+  non-share-alike tasks.

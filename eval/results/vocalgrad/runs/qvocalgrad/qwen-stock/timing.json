@@ -1,0 +1,7 @@
+{
+  "system": "qwen-stock",
+  "gpu": "NVIDIA H200",
+  "inference_seconds": 63.22,
+  "questions": 7200,
+  "calls": 7200
+}
