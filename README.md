@@ -1,8 +1,9 @@
 # homi - an open decision model for audio
 
-A Pareto-frontier open decision model that answers typed questions about a given audio clip (inspired by Jev). Unlike
-Jev, Clef and pplx-decider, which only take in text, homi takes an audio clip and a question, and returns a probability
-for every option. It beats Gemini Flash on VocalGrad and is comparable to Gemini Flash on MMSU. The model can be used
+A Pareto-frontier open decision model that answers typed questions about a given audio clip (inspired by [Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev)). Unlike
+Jev, [Clef](https://blog.cloudflare.com/clef-decision-models/) and [pplx-decider](https://huggingface.co/perplexity-ai/pplx-decider-v1.1-27b), which only take in text, homi takes an audio clip and a question, and returns a
+probability for every option. It beats [Gemini Flash](https://ai.google.dev/gemini-api/docs/models) on [VocalGrad](https://github.com/ynklab/vocalgrad) and is comparable to Gemini
+Flash on [MMSU](https://github.com/dingdongwang/MMSU). The model can be used
 for monitoring and evaluating large-scale audio at low cost.
 
 ## Problem
@@ -19,7 +20,7 @@ Just like Jev, there are three question types:
 ## Model
 
 It is [Qwen3-Omni-30B-A3B-Instruct](https://huggingface.co/Qwen/Qwen3-Omni-30B-A3B-Instruct) with frozen weights, a
-decision head in place of the language-model head, 17M parameters of LoRA, and one calibration temperature. It does
+decision head in place of the language-model head, 17M parameters of [LoRA](https://arxiv.org/abs/2106.09685), and one calibration temperature. It does
 not generate text.
 
 Weights: [`egma-ai/homi`](https://huggingface.co/egma-ai/homi). This repository has the code to run
@@ -30,7 +31,7 @@ it, evaluate it, rebuild its training data and train it.
 Same audio, question and options for every model. Unanswered counts as wrong. Our cost is GPU time on one H200
 ($4.54/h, batched); API costs are reported tokens at list prices (Gemini 3.8 Flash at its promotional price).
 
-**VocalGrad** (7,200 questions: does pitch, speed or volume rise or fall within a clip? Chance is 50%.)
+**[VocalGrad](https://github.com/ynklab/vocalgrad)** (7,200 questions: does pitch, speed or volume rise or fall within a clip? Chance is 50%.)
 
 | Model | VocalGrad | Speed | Pitch | Volume | $ per 10k questions |
 |---|---|---|---|---|---|
@@ -40,7 +41,7 @@ Same audio, question and options for every model. Unanswered counts as wrong. Ou
 | Gemini 3.5 Flash-Lite | 50.9 | 51 | 51 | 50 | 1.30 |
 | OpenAI gpt-audio | 33.8 | 32 | 35 | 34 | 37.03 |
 
-**MMSU** (4,981 questions, 47 tasks)
+**[MMSU](https://github.com/dingdongwang/MMSU)** (4,981 questions, 47 tasks)
 
 | Model | MMSU | Perception | Reasoning | $ per 10k questions |
 |---|---|---|---|---|
@@ -136,7 +137,7 @@ python eval/bench_report.py --dir ./bench_vocalgrad --name vocalgrad --out VOCAL
 ```
 
 Gemini needs a Modal secret `gemini` (`GEMINI_API_KEY`), OpenAI a secret `openai` (`OPENAI_API_KEY`). The exact
-prompts, revisions and scoring are in `eval/bench_lock.json` and `eval/modal_eval.py`. VoxParadox and MSU-Bench are
+prompts, revisions and scoring are in `eval/bench_lock.json` and `eval/modal_eval.py`. [VoxParadox](https://github.com/ihp-lab/VoxParadox) and [MSU-Bench](https://github.com/ASLP-lab/MSU-Bench) are
 research-only licences; check them before publishing scores.
 
 ## Training data
@@ -147,22 +148,22 @@ construction. [`data/DATA.md`](data/DATA.md) lists every source and licence.
 
 | Builder | Teaches | Main sources |
 |---|---|---|
-| `training/prepare_data.py` | emotion, spoken intent | CREMA-D, MInDS-14 |
-| `sb_voice` | emotion, pitch, rate, loudness, pauses, gender, age, pronunciation | CREMA-D, LibriTTS-R, speechocean762 |
+| `training/prepare_data.py` | emotion, spoken intent | [CREMA-D](https://github.com/CheyneyComputerScience/CREMA-D), [MInDS-14](https://huggingface.co/datasets/PolyAI/minds14) |
+| `sb_voice` | emotion, pitch, rate, loudness, pauses, gender, age, pronunciation | CREMA-D, [LibriTTS-R](https://www.openslr.org/141/), [speechocean762](https://www.openslr.org/101/) |
 | `sb_relative` | louder / faster / higher than the speaker's usual voice | LibriTTS-R, CREMA-D |
-| `sb_count`, `sb_speakers` | counting turns and speakers, same speaker | LibriTTS-R, LibriSpeech, HarperValleyBank, AMI |
-| `sb_compare` | pitch / speed / volume / range comparisons, durations, pauses | LibriTTS-R, Kokoro-82M |
-| `sb_phon` | syllables, stress, emphasis, minimal pairs, consonants and vowels | Kokoro-82M, CMUdict |
-| `sb_intonation` | intonation contours, meaning of pauses | LibriTTS-R, Kokoro-82M, WORLD |
+| `sb_count`, `sb_speakers` | counting turns and speakers, same speaker | LibriTTS-R, [LibriSpeech](https://www.openslr.org/12/), [HarperValleyBank](https://github.com/cricketclub/gridspace-stanford-harper-valley), [AMI](https://groups.inf.ed.ac.uk/ami/corpus/) |
+| `sb_compare` | pitch / speed / volume / range comparisons, durations, pauses | LibriTTS-R, [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M) |
+| `sb_phon` | syllables, stress, emphasis, minimal pairs, consonants and vowels | Kokoro-82M, [CMUdict](https://github.com/cmusphinx/cmudict) |
+| `sb_intonation` | intonation contours, meaning of pauses | LibriTTS-R, Kokoro-82M, [WORLD](https://github.com/mmorise/World) |
 | `sb_disfluency` | disfluency types, verse rhythm and rhyme | Kokoro-82M, CMUdict |
-| `sb_synthetic` | real vs synthetic speech | LibriSpeech, Apollo, HarperValleyBank, AMI; Kokoro, Piper, Parler-TTS, SpeechT5, Chatterbox, Vocos |
-| `sb_sounds`, `sb_sounds2` | sound events, music genre, instruments | FSD50K, NSynth, FMA, OpenMIC-2018 |
-| `sb_calls`, `sb_aicall` | who answered a call; AI agent with a person, voicemail or machine | Kokoro-82M, HarperValleyBank, FTC robocalls |
+| `sb_synthetic` | real vs synthetic speech | LibriSpeech, [Apollo](https://huggingface.co/datasets/BrunoHays/apollo-telephony-en), HarperValleyBank, AMI; Kokoro, [Piper](https://github.com/rhasspy/piper), [Parler-TTS](https://huggingface.co/parler-tts/parler-tts-mini-v1), [SpeechT5](https://huggingface.co/microsoft/speecht5_tts), [Chatterbox](https://huggingface.co/ResembleAI/chatterbox), [Vocos](https://github.com/gemelo-ai/vocos) |
+| `sb_sounds`, `sb_sounds2` | sound events, music genre, instruments | [FSD50K](https://zenodo.org/records/4060432), [NSynth](https://magenta.tensorflow.org/datasets/nsynth), [FMA](https://github.com/mdeff/fma), [OpenMIC-2018](https://github.com/cosmir/openmic-2018) |
+| `sb_calls`, `sb_aicall` | who answered a call; AI agent with a person, voicemail or machine | Kokoro-82M, HarperValleyBank, [FTC robocalls](https://github.com/wspr-ncsu/robocall-audio-dataset) |
 | `sb_dialog`, `sb_calltext` | talk-over, silences, turn order; call content | HarperValleyBank, AMI |
-| `sb_phone`, `sb_phone_pitch` | phone line quality, noise, live vs recorded, language; pitch on phone audio | Apollo, MInDS-14, FTC robocalls, LibriTTS-R, CREMA-D, MUSAN |
-| `sb_spoken`, `sb_spoken2` | spoken questions, intents, dialog acts | HarperValleyBank, CommonsenseQA, QASC, QuaRTz, JADE-Data |
-| `sb_tasksource`, JADE (`training/`) | text-only decisions | tasksource (commercial, non-share-alike tasks), JADE-Data |
-| `teacher` | soft labels for text questions | perplexity-ai/pplx-decider-v1.1-27b |
+| `sb_phone`, `sb_phone_pitch` | phone line quality, noise, live vs recorded, language; pitch on phone audio | Apollo, MInDS-14, FTC robocalls, LibriTTS-R, CREMA-D, [MUSAN](https://www.openslr.org/17/) |
+| `sb_spoken`, `sb_spoken2` | spoken questions, intents, dialog acts | HarperValleyBank, [CommonsenseQA](https://huggingface.co/datasets/tau/commonsense_qa), [QASC](https://huggingface.co/datasets/allenai/qasc), [QuaRTz](https://huggingface.co/datasets/allenai/quartz), [JADE-Data](https://huggingface.co/datasets/theunnecessarythings/JADE-Data) |
+| `sb_tasksource`, JADE (`training/`) | text-only decisions | [tasksource](https://huggingface.co/datasets/tasksource/tasksource-jev-typed-decisions) (commercial, non-share-alike tasks), JADE-Data |
+| `teacher` | soft labels for text questions | [perplexity-ai/pplx-decider-v1.1-27b](https://huggingface.co/perplexity-ai/pplx-decider-v1.1-27b) |
 
 Each builder runs with its `modal_build.py` and writes `/vol/stageb/<builder>/`. Some builders reuse raw copies made by
 others (e.g. `sb_aicall` reads `sb_dialog`'s HarperValleyBank copy), so build in table order. Rebuilt data follows the same
@@ -206,3 +207,31 @@ licences ([data/DATA.md](data/DATA.md)).
   howpublished = {\url{https://github.com/egma-ai/homi}}
 }
 ```
+
+## References
+
+**Inspiration**
+- Jev (TypeSafe AI): [launch post](https://typesafe.ai/blog/introducing-system-one-models-and-jev)
+- Clef (Cloudflare): [blog post](https://blog.cloudflare.com/clef-decision-models/), [weights](https://huggingface.co/Cloudflare/clef)
+- pplx-decider (Perplexity): [weights](https://huggingface.co/perplexity-ai/pplx-decider-v1.1-27b)
+
+**Model and method**
+- Qwen3-Omni-30B-A3B-Instruct: [weights](https://huggingface.co/Qwen/Qwen3-Omni-30B-A3B-Instruct), [Qwen3-Omni Technical Report](https://arxiv.org/abs/2509.17765)
+- Hu et al., 2021. [LoRA: Low-Rank Adaptation of Large Language Models](https://arxiv.org/abs/2106.09685)
+
+**Benchmarks**
+- MMSU (ICLR 2026): [paper](https://arxiv.org/abs/2506.04779), [code](https://github.com/dingdongwang/MMSU), [data](https://huggingface.co/datasets/ddwang2000/MMSU)
+- VocalGrad: [code](https://github.com/ynklab/vocalgrad), [data](https://huggingface.co/datasets/ynklab/vocalgrad)
+- VoxParadox: [paper](https://arxiv.org/abs/2605.27772), [code](https://github.com/ihp-lab/VoxParadox)
+- MSU-Bench: [paper](https://arxiv.org/abs/2606.22868), [code](https://github.com/ASLP-lab/MSU-Bench)
+
+**Compared models**
+- Gemini 3.8 Flash, Gemini 3.5 Flash-Lite: [Gemini API models](https://ai.google.dev/gemini-api/docs/models)
+- OpenAI gpt-audio: [model page](https://platform.openai.com/docs/models/gpt-audio)
+
+**Training data** (licences in [data/DATA.md](data/DATA.md))
+- Speech: [LibriTTS-R](https://www.openslr.org/141/), [LibriSpeech](https://www.openslr.org/12/), [CREMA-D](https://github.com/CheyneyComputerScience/CREMA-D) (Cao et al., 2014), [speechocean762](https://www.openslr.org/101/), [HarperValleyBank](https://github.com/cricketclub/gridspace-stanford-harper-valley), [AMI](https://groups.inf.ed.ac.uk/ami/corpus/), [Apollo telephony](https://huggingface.co/datasets/BrunoHays/apollo-telephony-en), [MInDS-14](https://huggingface.co/datasets/PolyAI/minds14), [FTC robocall audio](https://github.com/wspr-ncsu/robocall-audio-dataset)
+- Sounds and music: [FSD50K](https://zenodo.org/records/4060432), [NSynth](https://magenta.tensorflow.org/datasets/nsynth), [FMA](https://github.com/mdeff/fma), [OpenMIC-2018](https://github.com/cosmir/openmic-2018), [MUSAN](https://www.openslr.org/17/), [OpenSLR 28 room responses](https://www.openslr.org/28/)
+- Text: [CommonsenseQA](https://huggingface.co/datasets/tau/commonsense_qa), [QASC](https://huggingface.co/datasets/allenai/qasc), [QuaRTz](https://huggingface.co/datasets/allenai/quartz), [JADE-Data](https://huggingface.co/datasets/theunnecessarythings/JADE-Data), [tasksource](https://huggingface.co/datasets/tasksource/tasksource-jev-typed-decisions)
+- Pronunciation: [CMUdict](https://github.com/cmusphinx/cmudict), [misaki](https://github.com/hexgrad/misaki)
+- Synthetic speech and audio tools: [Kokoro-82M](https://huggingface.co/hexgrad/Kokoro-82M), [Piper](https://github.com/rhasspy/piper), [Parler-TTS mini v1](https://huggingface.co/parler-tts/parler-tts-mini-v1), [SpeechT5](https://huggingface.co/microsoft/speecht5_tts) with [HiFi-GAN](https://huggingface.co/microsoft/speecht5_hifigan) and [CMU ARCTIC x-vectors](https://huggingface.co/datasets/Matthijs/cmu-arctic-xvectors), [Chatterbox](https://huggingface.co/ResembleAI/chatterbox), [Vocos](https://github.com/gemelo-ai/vocos), [WORLD](https://github.com/mmorise/World) / [pyworld](https://github.com/JeremyCCHsu/Python-Wrapper-for-World-Vocoder), [Rubber Band](https://breakfastquay.com/rubberband/)
