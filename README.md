@@ -48,16 +48,16 @@ gpt-audio did not answer 13% of MMSU and 34% of VocalGrad (it declined or asked 
 questions it did answer it scores 69.5 and 51.2. Raw answers and per-task tables: [`eval/results/`](eval/results/).
 
 **Calibration** (does confidence match accuracy?). ECE is the average gap between confidence and accuracy. Brier is
-the mean squared error of the probabilities; guessing evenly scores about 0.75 on MMSU and 0.50 on VocalGrad. Lower is
+the mean squared error of the probabilities; guessing evenly scores about 0.50 on VocalGrad and 0.75 on MMSU. Lower is
 better for both. "Sure" = confidence of at least 0.9.
 
-| Model | MMSU ECE | MMSU Brier | MMSU: accuracy when sure (share sure) | VocalGrad ECE | VocalGrad Brier | VocalGrad: accuracy when sure (share sure) |
+| Model | VocalGrad ECE | VocalGrad Brier | VocalGrad: accuracy when sure (share sure) | MMSU ECE | MMSU Brier | MMSU: accuracy when sure (share sure) |
 |---|---|---|---|---|---|---|
-| egma-homi | 0.076 | 0.259 | 91.7% (73%) | 0.157 | 0.399 | 82.8% (67%) |
-| Gemini 3.8 Flash | 0.052 | 0.238 | 93.7% (63%) | 0.237 | 0.570 | 70.2% (37%) |
-| Qwen3-Omni-30B-A3B | 0.182 | 0.439 | 84.4% (73%) | 0.337 | 0.740 | 52.5% (38%) |
-| Gemini 3.5 Flash-Lite | 0.133 | 0.512 | 72.1% (14%) | 0.229 | 0.622 | 55.0% (15%) |
-| OpenAI gpt-audio | 0.081 | 0.459 | 84.8% (11%) | 0.269 | 0.657 | 50.1% (8%) |
+| egma-homi | 0.157 | 0.399 | 82.8% (67%) | 0.076 | 0.259 | 91.7% (73%) |
+| Gemini 3.8 Flash | 0.237 | 0.570 | 70.2% (37%) | 0.052 | 0.238 | 93.7% (63%) |
+| Qwen3-Omni-30B-A3B | 0.337 | 0.740 | 52.5% (38%) | 0.182 | 0.439 | 84.4% (73%) |
+| Gemini 3.5 Flash-Lite | 0.229 | 0.622 | 55.0% (15%) | 0.133 | 0.512 | 72.1% (14%) |
+| OpenAI gpt-audio | 0.269 | 0.657 | 50.1% (8%) | 0.081 | 0.459 | 84.8% (11%) |
 
 Gemini and OpenAI probabilities are the ones the models report in their answers; gpt-audio is scored only on the
 questions it answered. On VocalGrad, egma-homi is the only model with a
