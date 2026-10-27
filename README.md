@@ -6,6 +6,8 @@ probability for every option. It beats Gemini Flash on [VocalGrad](https://githu
 Flash on [MMSU](https://github.com/dingdongwang/MMSU). The model can be used
 for monitoring and evaluating large-scale audio at low cost.
 
+The name is a nod to [Homi J. Bhabha](https://en.wikipedia.org/wiki/Homi_J._Bhabha).
+
 ## Problem
 
 A lot of paralinguistic and phonological questions about audio cannot be answered by looking at a transcript. This
