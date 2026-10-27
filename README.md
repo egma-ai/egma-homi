@@ -48,9 +48,7 @@ Same audio, question and options for every model. Unanswered counts as wrong. Ou
 gpt-audio did not answer 13% of MMSU and 34% of VocalGrad (it declined or asked us to "play the audio"); on the
 questions it did answer it scores 69.5 and 51.2. Raw answers and per-task tables: [`eval/results/`](eval/results/).
 
-**Calibration** (does confidence match accuracy?). ECE is the average gap between confidence and accuracy. Brier is
-the mean squared error of the probabilities; guessing evenly scores about 0.50 on VocalGrad and 0.75 on MMSU. Lower is
-better for both. "Sure" = confidence of at least 0.9.
+**Calibration** (does confidence match accuracy?). 
 
 | Model | VocalGrad ECE | VocalGrad Brier | VocalGrad: accuracy when sure (share sure) | MMSU ECE | MMSU Brier | MMSU: accuracy when sure (share sure) |
 |---|---|---|---|---|---|---|
@@ -60,7 +58,7 @@ better for both. "Sure" = confidence of at least 0.9.
 | Gemini 3.5 Flash-Lite | 0.229 | 0.622 | 55.0% (15%) | 0.133 | 0.512 | 72.1% (14%) |
 | OpenAI gpt-audio | 0.269 | 0.657 | 50.1% (8%) | 0.081 | 0.459 | 84.8% (11%) |
 
-Gemini and OpenAI probabilities are the ones the models report in their answers; gpt-audio is scored only on the
+Gemini and OpenAI probabilities are the ones the models report in their answers. gpt-audio is scored only on the
 questions it answered. On VocalGrad, egma-homi is the only model with a
 Brier score better than guessing evenly, but it is overconfident: its most confident answers (98% on average) are
 right 85% of the time. Full tables:
@@ -69,7 +67,7 @@ right 85% of the time. Full tables:
 No MMSU audio or text is in the training data, and neither are the datasets MMSU builds its audio from.
 
 Weak spots: counting distinct speakers (it usually answers one too few), long conversations with several people,
-rhyming couplets, reasoning from pauses. Training audio is mostly under 30 seconds; the longest clips are about 3 minutes.
+rhyming couplets, reasoning from pauses.
 
 ## Layout
 
