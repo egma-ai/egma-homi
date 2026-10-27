@@ -1,4 +1,4 @@
-# egma-homi - an open decision model 
+# egma-homi - an open decision model for audio 
 
 An pareto frontier open decision model that answers typed questions on a give audio (inspired by Jev). Give it an audio and a question - it returns a probability for every option. It beats Gemini flash on vocal grad and has comparable performance on gemini flash MMSU.   
 
