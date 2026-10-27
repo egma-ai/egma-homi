@@ -1,12 +1,15 @@
-# egma-homi
+# egma-homi - an open decision model 
 
-An open decision model that answers typed questions about audio (inspired by Jev). Give it a clip and a question; it
-returns a probability for every option.
+An pareto frontier open decision model that answers typed questions on a give audio (inspired by Jev). Give it an audio and a question - it returns a probability for every option. It beats Gemini flash on vocal grad and has comparable performance on gemini flash MMSU.   
 
+Problem - A lot of paralinguistic and phonological questions about audio cannot be answered by looking  at transcript. This model natively takes in audio and answer those questions eg 'how does the speaker feel?' with options being angry / happy / sad / fear / disgust. 
+
+Just like Jev, there are there options 
 - `noul`: yes/no, returns P(yes)
 - `choice`: 2 to 255 options, returns a probability per option
 - `score`: 2 to 10 ordered levels (e.g. slow / normal / fast), returns a probability per level
 
+## Model
 It is [Qwen3-Omni-30B-A3B-Instruct](https://huggingface.co/Qwen/Qwen3-Omni-30B-A3B-Instruct) with frozen weights, a
 decision head in place of the language-model head, 17M parameters of LoRA, and one calibration temperature. It does
 not generate text.
@@ -19,6 +22,16 @@ it, evaluate it, rebuild its training data and train it.
 Same audio, question and options for every model. Unanswered counts as wrong. Our cost is GPU time on one H200
 ($4.54/h, batched); API costs are reported tokens at list prices (Gemini 3.8 Flash at its promotional price).
 
+**VocalGrad** (7,200 questions: does pitch, speed or volume rise or fall within a clip? Chance is 50%.)
+
+| Model | VocalGrad | Speed | Pitch | Volume | $ per 10k questions |
+|---|---|---|---|---|---|
+| egma-homi | 73.9 | 74 | 61 | 87 | 0.12 |
+| Gemini 3.8 Flash | 63.0 | 78 | 56 | 55 | 12.10 |
+| Qwen3-Omni-30B-A3B | 50.3 | 50 | 50 | 50 | 0.11 |
+| Gemini 3.5 Flash-Lite | 50.9 | 51 | 51 | 50 | 1.30 |
+| OpenAI gpt-audio | 33.8 | 32 | 35 | 34 | 37.03 |
+
 **MMSU** (4,981 questions, 47 tasks)
 
 | Model | MMSU | Perception | Reasoning | $ per 10k questions |
@@ -29,15 +42,7 @@ Same audio, question and options for every model. Unanswered counts as wrong. Ou
 | Gemini 3.5 Flash-Lite | 67.4 | 55.1 | 80.3 | 2.07 |
 | OpenAI gpt-audio | 60.3 | 46.5 | 74.9 | 41.69 |
 
-**VocalGrad** (7,200 questions: does pitch, speed or volume rise or fall within a clip? Chance is 50%.)
 
-| Model | VocalGrad | Speed | Pitch | Volume | $ per 10k questions |
-|---|---|---|---|---|---|
-| egma-homi | 73.9 | 74 | 61 | 87 | 0.12 |
-| Gemini 3.8 Flash | 63.0 | 78 | 56 | 55 | 12.10 |
-| Qwen3-Omni-30B-A3B | 50.3 | 50 | 50 | 50 | 0.11 |
-| Gemini 3.5 Flash-Lite | 50.9 | 51 | 51 | 50 | 1.30 |
-| OpenAI gpt-audio | 33.8 | 32 | 35 | 34 | 37.03 |
 
 gpt-audio did not answer 13% of MMSU and 34% of VocalGrad (it declined or asked us to "play the audio"); on the
 questions it did answer it scores 69.5 and 51.2. Raw answers and per-task tables: [`eval/results/`](eval/results/).
@@ -84,7 +89,9 @@ You need a GPU with about 70 GB free (bf16).
 ```bash
 pip install torch==2.14.1 transformers==5.18.0 peft==0.21.2 accelerate==1.15.0 safetensors==0.8.0 \
     soundfile==0.14.0 scipy==1.18.1 numpy==2.5.3 huggingface_hub
+
 hf download egma-ai/egma-homi --local-dir egma-homi
+
 python egma-homi/predict.py clip.wav
 ```
 
