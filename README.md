@@ -1,4 +1,4 @@
-# homi: an open decision model for audio
+# homi - an open decision model for audio
 
 A Pareto-frontier open decision model that answers typed questions about a given audio clip (inspired by Jev). Unlike
 Jev, Clef and pplx-decider, which only take in text, homi takes an audio clip and a question, and returns a probability
