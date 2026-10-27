@@ -6,7 +6,6 @@ probability for every option. It beats Gemini Flash on [VocalGrad](https://githu
 Flash on [MMSU](https://github.com/dingdongwang/MMSU). The model can be used
 for monitoring and evaluating large-scale audio at low cost.
 
-The name is a nod to [Homi J. Bhabha](https://en.wikipedia.org/wiki/Homi_J._Bhabha).
 
 ## Problem
 
@@ -213,6 +212,7 @@ licences ([data/DATA.md](data/DATA.md)).
 ## References
 
 **Inspiration**
+- The name is a nod to [Homi J. Bhabha](https://en.wikipedia.org/wiki/Homi_J._Bhabha).
 - Jev (TypeSafe AI): [launch post](https://typesafe.ai/blog/introducing-system-one-models-and-jev)
 - Clef (Cloudflare): [blog post](https://blog.cloudflare.com/clef-decision-models/), [weights](https://huggingface.co/Cloudflare/clef)
 - pplx-decider (Perplexity): [weights](https://huggingface.co/perplexity-ai/pplx-decider-v1.1-27b)
