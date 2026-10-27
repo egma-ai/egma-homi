@@ -22,7 +22,7 @@ Voice and MMSU audio are not used; no question equals an MMSU question.
 
 ## Run
     modal run --detach data/sb_compare/modal_build.py::main    # --smoke for a ~3 % build; Kokoro runs on L4 GPUs
-Writes `/vol/stageb/sb_compare/` on the `egma-homi` volume: `items_train.jsonl`, `items_cal.jsonl`, `audio/`, `summary.json`.
+Writes `/vol/stageb/sb_compare/` on the `homi` volume: `items_train.jsonl`, `items_cal.jsonl`, `audio/`, `summary.json`.
 
 ## Tests
     uv run --python 3.12 --with pytest --with numpy --with scipy --with soundfile pytest data/sb_compare/tests

@@ -36,7 +36,7 @@ SOURCES = {
     "kokoro": {"repo": KOKORO_REPO, "revision": KOKORO_REV, "licence": "Apache-2.0 (TTS model used to read the text)"},
 }
 
-volume = modal.Volume.from_name("egma-homi", create_if_missing=False)
+volume = modal.Volume.from_name("homi", create_if_missing=False)
 hf_secret = modal.Secret.from_name("huggingface")
 
 _local_files = ["modal_build.py", "build.py", "voice_wer.json"]

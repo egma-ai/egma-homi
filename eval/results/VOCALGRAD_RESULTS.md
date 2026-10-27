@@ -4,7 +4,7 @@
 
 | model | accuracy | ± | answered | accuracy on answered | refused / no answer | cost per 10k questions |
 |---|---|---|---|---|---|---|
-| egma-homi | 73.9 | 1.0 | 7200/7200 | 73.9 | 0 | $0.12 |
+| homi | 73.9 | 1.0 | 7200/7200 | 73.9 | 0 | $0.12 |
 | Qwen3-Omni untouched (base) | 50.3 | 1.2 | 7200/7200 | 50.3 | 0 | $0.11 |
 | Gemini 3.8 Flash | 63.0 | 1.1 | 7200/7200 | 63.0 | 0 | $12.10 |
 | Gemini 3.5 Flash-Lite | 50.9 | 1.2 | 7200/7200 | 50.9 | 0 | $1.30 |
@@ -12,7 +12,7 @@
 
 ## Per task (accuracy %, n questions)
 
-| task | n | egma-homi | Qwen3-Omni untouched (base) | Gemini 3.8 Flash | Gemini 3.5 Flash-Lite | OpenAI gpt-audio |
+| task | n | homi | Qwen3-Omni untouched (base) | Gemini 3.8 Flash | Gemini 3.5 Flash-Lite | OpenAI gpt-audio |
 |---|---|---|---|---|---|---|
 | speaking_speed | 2400 | 74 | 50 | 78 | 51 | 32 |
 | voice_pitch | 2400 | 61 | 50 | 56 | 51 | 35 |

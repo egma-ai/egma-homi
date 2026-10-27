@@ -23,7 +23,7 @@ audio or text is used; its question strings are read only to check that no item 
 ## Run
     modal run --detach data/sb_phon/modal_build.py::full       # ::smoke for a small run
 
-Writes `/vol/stageb/sb_phon/` on the `egma-homi` volume (`items_train.jsonl`, `items_cal.jsonl`, `audio/`, `summary.json`).
+Writes `/vol/stageb/sb_phon/` on the `homi` volume (`items_train.jsonl`, `items_cal.jsonl`, `audio/`, `summary.json`).
 
 ## Tests
     uv run --python 3.12 --with pytest --with numpy --with scipy --with soundfile pytest data/sb_phon/tests

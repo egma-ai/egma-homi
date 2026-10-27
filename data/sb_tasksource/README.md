@@ -21,7 +21,7 @@ option set with our evaluation set. Each dropped task and its reason is listed i
 
 ## Run
     modal run --detach data/sb_tasksource/modal_build.py::main   # CPU only; ::smoke writes /vol/stageb_smoke/, ::validate re-checks
-Writes `/vol/stageb/sb_tasksource/` on the `egma-homi` volume: `items_train.jsonl`, `items_cal.jsonl`, empty `audio/`,
+Writes `/vol/stageb/sb_tasksource/` on the `homi` volume: `items_train.jsonl`, `items_cal.jsonl`, empty `audio/`,
 `summary.json`.
 
 ## Tests

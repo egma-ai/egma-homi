@@ -1,5 +1,5 @@
 """
-Decision Index engine (kit `Engine` subclass) for egma-homi: Qwen3-Omni-30B-A3B thinker, optionally with the
+Decision Index engine (kit `Engine` subclass) for homi: Qwen3-Omni-30B-A3B thinker, optionally with the
 trained LoRA adapter merged in, + the decision head (last-token hidden state -> one logit per answer code).
 
     --engine di_engine:EgmaHomiEngine --option adapter_dir=. --option temperature_file=./temperature.json
@@ -41,12 +41,12 @@ class _LastPositionOnly:
 
 
 class EgmaHomiEngine(Engine):
-    name = "egma-homi"
+    name = "homi"
     latency = ("Device-synchronized in-process request wall time including prompt construction and tokenisation; "
                "all questions of a request batched into as few forward passes as fit a 32k padded-token budget; "
                "excludes model loading.")
 
-    def __init__(self, system="egma-homi", adapter_dir=None, temperature=1.0, temperature_file=None, max_tokens=None,
+    def __init__(self, system="homi", adapter_dir=None, temperature=1.0, temperature_file=None, max_tokens=None,
                  decision_file=None, **options):
         super().__init__(**options)
         import torch

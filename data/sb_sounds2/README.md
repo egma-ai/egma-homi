@@ -28,7 +28,7 @@ Song Describer are dropped, and music excerpts are scanned for near-duplicates o
     modal run --detach data/sb_sounds2/modal_build.py::main   # full build, CPU only
     modal run data/sb_sounds2/modal_build.py::finalize        # second-stage near-duplicate check
 
-Writes `/vol/stageb/sb_sounds2/` on the `egma-homi` volume: `items_train.jsonl`, `items_cal.jsonl`, `audio/`,
+Writes `/vol/stageb/sb_sounds2/` on the `homi` volume: `items_train.jsonl`, `items_cal.jsonl`, `audio/`,
 `summary.json`.
 
 ## Tests

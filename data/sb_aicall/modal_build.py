@@ -40,7 +40,7 @@ N_E_PER_CONV = 0.7
 N_SYN = {"B": 900, "C": 600, "D": 300}  # synthetic clips at scale 1
 SYN_CAL_FRAC = 0.04
 
-volume = modal.Volume.from_name("egma-homi", create_if_missing=False)
+volume = modal.Volume.from_name("homi", create_if_missing=False)
 _files = {
     HERE: ["modal_build.py", "build.py", "aic_scripts.py", "aic_layout.py", "aic_labels.py", "aic_questions.py",
            "aic_synth.py"],

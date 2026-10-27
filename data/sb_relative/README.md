@@ -18,10 +18,10 @@ Two-part recordings of one speaker (normal voice, short tone, target clip): how 
 | separator tone | generated 1 kHz tone | CC0 | `relabels.py` |
 
 Clips and features come from sb_voice (`/vol/stageb/sb_voice/work2`); its CAL speakers are never used, and CAL here
-(~3 %) uses held-out speakers. VCTK items are left out of egma-homi training (see DATA.md).
+(~3 %) uses held-out speakers. VCTK items are left out of homi training (see DATA.md).
 
 ## Run and test
     modal run --detach data/sb_relative/modal_build.py::main     # --smoke for a 3 % build
     uv run --python 3.12 --with pytest --with numpy --with scipy --with soundfile pytest data/sb_relative/tests
-The build writes `/vol/stageb/sb_relative/` on the `egma-homi` volume (`items_train.jsonl`, `items_cal.jsonl`,
+The build writes `/vol/stageb/sb_relative/` on the `homi` volume (`items_train.jsonl`, `items_cal.jsonl`,
 `audio/`, `summary.json`) and an extra evaluation set from the evaluation-set CREMA-D actors to `/vol/adi/extra/`.

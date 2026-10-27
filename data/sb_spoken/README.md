@@ -24,7 +24,7 @@ No call from our evaluation set is used; `items_train_strict.jsonl` also drops H
 ## Run
     modal run --detach data/sb_spoken/modal_build.py::main   # TTS on a GPU; ::smoke for a small run
 
-Writes `/vol/stageb/sb_spoken/` on the `egma-homi` volume: `items_train.jsonl`, `items_cal.jsonl`,
+Writes `/vol/stageb/sb_spoken/` on the `homi` volume: `items_train.jsonl`, `items_cal.jsonl`,
 `items_train_strict.jsonl`, `audio/`, `summary.json`.
 
 ## Tests

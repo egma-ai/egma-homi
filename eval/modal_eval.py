@@ -1,17 +1,17 @@
 """
-MMSU and the other audio benchmarks on Modal, one harness for every model (egma-homi, the untouched Qwen3-Omni base,
+MMSU and the other audio benchmarks on Modal, one harness for every model (homi, the untouched Qwen3-Omni base,
 Gemini, OpenAI): same audio, the benchmark's own question and options in the published order. Answers are scored
 offline by eval/mmsu_report.py and eval/bench_report.py.
 
     modal run eval/modal_eval.py::mmsu --step prepare                     # MMSU -> /vol/bench_mmsu (CPU)
-    modal run --detach eval/modal_eval.py::mmsu --step run --which egma-homi,qwen-stock,gemini-3.8-flash
+    modal run --detach eval/modal_eval.py::mmsu --step run --which homi,qwen-stock,gemini-3.8-flash
     modal run --detach eval/bench_prepare.py::main                        # VocalGrad, VoxParadox, MSU-Bench
-    modal run --detach eval/modal_eval.py::bench --name vocalgrad --which egma-homi,qwen-stock,gemini-3.8-flash,gpt-audio
-    modal volume get egma-homi /bench_mmsu ./bench_mmsu                   # then score locally:
+    modal run --detach eval/modal_eval.py::bench --name vocalgrad --which homi,qwen-stock,gemini-3.8-flash,gpt-audio
+    modal volume get homi /bench_mmsu ./bench_mmsu                   # then score locally:
     python eval/mmsu_report.py --dir ./bench_mmsu --out MMSU.md
 
-Systems: "egma-homi" = /vol/runs/pass2/adapter (from training/), or a downloaded kit with
---adapter-dir /vol/models/egma-homi; "qwen-stock" = the untouched base (head = its own lm_head rows);
+Systems: "homi" = /vol/runs/pass2/adapter (from training/), or a downloaded kit with
+--adapter-dir /vol/models/homi; "qwen-stock" = the untouched base (head = its own lm_head rows);
 "gemini-<model>" needs a Modal secret "gemini" with GEMINI_API_KEY; "gpt-audio" needs a Modal secret "openai" with
 OPENAI_API_KEY.
 
@@ -35,15 +35,15 @@ sys.path.insert(0, str(INFERENCE))
 sys.path.insert(0, str(TRAINING))
 
 VOL = "/vol"
-VOLUME_NAME = "egma-homi"
+VOLUME_NAME = "homi"
 MMSU_DIR = f"{VOL}/bench_mmsu"
 MMSU_REPO, MMSU_REV = "ddwang2000/MMSU", "548e2283105825bf908a7db5c09c00dbcf42bd4c"
 LETTERS = "ABCDEFGHIJ"
 PER_ITEM_QSETS = {"mmsu", "vocalgrad", "voxparadox", "msubench"}  # public benchmarks, own question + options per item
-OURS = {"egma-homi": ("pass2", True), "qwen-stock": ("pass1", False)}  # system -> (run, use adapter)
+OURS = {"homi": ("pass2", True), "qwen-stock": ("pass1", False)}  # system -> (run, use adapter)
 QWEN_GPU = ["H200", "B200"]
 
-app = modal.App("egma-homi-eval")
+app = modal.App("homi-eval")
 volume = modal.Volume.from_name(VOLUME_NAME, create_if_missing=True)
 gpu_image = (
     modal.Image.debian_slim(python_version="3.12")
@@ -144,9 +144,9 @@ def mmsu_prepare() -> dict:
 
 
 @app.function(image=gpu_image, volumes={VOL: volume}, gpu=QWEN_GPU, timeout=2 * 3600)
-def bench_ours(system: str = "egma-homi", qset: str = "mmsu", bench_dir: str = MMSU_DIR, bank: str = "bench_mmsu",
+def bench_ours(system: str = "homi", qset: str = "mmsu", bench_dir: str = MMSU_DIR, bank: str = "bench_mmsu",
                adapter_dir: str = "") -> dict:
-    """egma-homi (or the untouched base) on every item: decision-head log-probabilities at T = 1 (the temperature does
+    """homi (or the untouched base) on every item: decision-head log-probabilities at T = 1 (the temperature does
     not change the top option). Timed after a warm-up, for the cost column."""
     import torch
 
@@ -374,7 +374,7 @@ def _spawn(system: str, qset: str, bench_dir: str, bank: str, workers: int, adap
 
 
 @app.local_entrypoint()
-def mmsu(step: str = "prepare", which: str = "egma-homi,qwen-stock,gemini-3.8-flash", workers: int = 32, adapter_dir: str = ""):
+def mmsu(step: str = "prepare", which: str = "homi,qwen-stock,gemini-3.8-flash", workers: int = 32, adapter_dir: str = ""):
     """--step prepare: build /vol/bench_mmsu. --step run: spawn one job per system and return (use --detach)."""
     if step == "prepare":
         print(json.dumps(mmsu_prepare.remote(), indent=2))
@@ -384,7 +384,7 @@ def mmsu(step: str = "prepare", which: str = "egma-homi,qwen-stock,gemini-3.8-fl
 
 
 @app.local_entrypoint()
-def bench(name: str = "vocalgrad", which: str = "egma-homi,qwen-stock,gemini-3.8-flash", workers: int = 16,
+def bench(name: str = "vocalgrad", which: str = "homi,qwen-stock,gemini-3.8-flash", workers: int = 16,
           adapter_dir: str = ""):
     """A benchmark prepared by eval/bench_prepare.py (vocalgrad | voxparadox | msubench)."""
     assert name in PER_ITEM_QSETS - {"mmsu"}, name

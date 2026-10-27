@@ -22,7 +22,7 @@ VOL = "/vol"
 OUT = f"{VOL}/stageb/sb_calltext"
 WORK = f"{OUT}/work"
 
-volume = modal.Volume.from_name("egma-homi", create_if_missing=False)
+volume = modal.Volume.from_name("homi", create_if_missing=False)
 _local_files = ["modal_build.py", "build.py", "llm_label.py", "prep.py", "assemble.py"]
 
 

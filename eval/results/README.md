@@ -7,8 +7,8 @@ stored here; it comes from the benchmarks themselves (`eval/modal_eval.py::mmsu 
 ```
 results/<bench>/truth.jsonl                               question, options, answer key, task (from the benchmark)
 results/<bench>/items<bench>.jsonl                        our items (question + options in the published order)
-results/<bench>/runs/q<bench>/egma-homi/preds.jsonl       egma-homi: log-probabilities per option (T = 1)
-results/<bench>/runs/q<bench>/egma-homi/timing.json       egma-homi: GPU seconds, for the cost column
+results/<bench>/runs/q<bench>/homi/preds.jsonl       homi: log-probabilities per option (T = 1)
+results/<bench>/runs/q<bench>/homi/timing.json       homi: GPU seconds, for the cost column
 results/<bench>/runs/q<bench>/qwen-stock/...              the untouched base model, same harness
 results/<bench>/runs/q<bench>/gemini_<model>/responses.jsonl   Gemini: JSON answer, probabilities, token usage
 results/<bench>/runs/q<bench>/openai_gpt-audio/responses.jsonl OpenAI: JSON answer or the reply it gave instead

@@ -37,7 +37,7 @@ LIC = {
             "build.py); no poems, lyrics or benchmark text",
 }
 
-volume = modal.Volume.from_name("egma-homi", create_if_missing=False)
+volume = modal.Volume.from_name("homi", create_if_missing=False)
 _files = {HERE: ["modal_build.py", "build.py", "lexbank.py"], STAGEB / "sb_phon": ["lexicon.py"],
           STAGEB / "sb_phone": ["fx.py"], INFERENCE: ["common.py", "answer_codes.json"]}
 

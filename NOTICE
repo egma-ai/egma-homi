@@ -1,7 +1,7 @@
-egma-homi (code)
+homi (code)
 Copyright 2026 Outlier Humans Inc.
 
-This repository contains the code for egma-homi: inference, evaluation, training-data builders and training. It is
+This repository contains the code for homi: inference, evaluation, training-data builders and training. It is
 licensed under the Apache License, Version 2.0 (see LICENSE). It contains no model weights and no training audio.
 The trained model (adapter, decision head, temperature) is published separately at
 https://huggingface.co/egma-ai/egma-homi with its own NOTICE and per-clip credits.

@@ -28,7 +28,7 @@ speakers only. `librispeech_speaker_gender.json` and `crema_demographics.json` a
     modal run --detach data/sb_voice/modal_build.py::main    # --skip-stage1 re-assembles from the work files
     modal run data/sb_voice/modal_build.py::check             # re-validate the written files
 
-Output on the `egma-homi` volume: `/vol/stageb/sb_voice/` (`items_train.jsonl`, `items_cal.jsonl`, `audio/`,
+Output on the `homi` volume: `/vol/stageb/sb_voice/` (`items_train.jsonl`, `items_cal.jsonl`, `audio/`,
 `summary.json`).
 
 ## Tests

@@ -30,7 +30,7 @@ evaluation set, and sb_voice CAL speakers. CAL uses held-out speakers, calls, MU
 ## Run
     modal run --detach data/sb_phone_pitch/modal_build.py::main   # CPU only; add --smoke for a 3% run
 
-Writes `/vol/stageb/sb_phone_pitch/` on the `egma-homi` volume: `items_train.jsonl`, `items_cal.jsonl`, `audio/`,
+Writes `/vol/stageb/sb_phone_pitch/` on the `homi` volume: `items_train.jsonl`, `items_cal.jsonl`, `audio/`,
 `summary.json` (written last).
 
 ## Tests

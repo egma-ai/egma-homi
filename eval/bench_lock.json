@@ -29,7 +29,7 @@
     }
   },
   "models": {
-    "egma-homi": "this release (adapter_model.safetensors sha256 428ba9ead7d6b8567721d109f1213f71ffb04cb26e27f5f9b4deba202213ac10)",
+    "homi": "this release (adapter_model.safetensors sha256 428ba9ead7d6b8567721d109f1213f71ffb04cb26e27f5f9b4deba202213ac10)",
     "qwen-stock": "Qwen/Qwen3-Omni-30B-A3B-Instruct @ 26291f793822fb6be9555850f06dfe95f2d7e695, no adapter",
     "gemini-3.8-flash": "Gemini API, paid tier",
     "gemini-3.5-flash-lite": "Gemini API, paid tier",

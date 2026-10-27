@@ -22,7 +22,7 @@ CAL speakers, chapters, calls and meetings are disjoint from train. SLUE-HVB tes
 
 ## Run
     modal run --detach data/sb_speakers/modal_build.py::full   # CPU only; ::smoke for a small run, ::check to re-check
-Writes `/vol/stageb/sb_speakers/` on the `egma-homi` volume: `items_train.jsonl`, `items_cal.jsonl`, `audio/`,
+Writes `/vol/stageb/sb_speakers/` on the `homi` volume: `items_train.jsonl`, `items_cal.jsonl`, `audio/`,
 `summary.json`.
 
 ## Tests

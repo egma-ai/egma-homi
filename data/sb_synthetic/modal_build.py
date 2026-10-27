@@ -20,7 +20,7 @@ VOL = "/vol"
 WORK = f"{VOL}/stageb_work/sb_synthetic"
 OUT = f"{VOL}/stageb/sb_synthetic"
 
-volume = modal.Volume.from_name("egma-homi", create_if_missing=False)
+volume = modal.Volume.from_name("homi", create_if_missing=False)
 
 
 def _code(img: modal.Image) -> modal.Image:

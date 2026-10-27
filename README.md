@@ -1,4 +1,4 @@
-# egma-homi: an open decision model for audio 
+# homi: an open decision model for audio 
 
 A pareto frontier open decision model that answers typed questions on a give audio (inspired by Jev).Unlike Jev/Clef/Pplx-decisder, which only takes in text, homi takes an audio and a question - it returns a probability for every option. It beats Gemini flash on vocal grad and has comparable performance on MMSU gemini flash. The model could be used effectively monitoring and evaluating large scale audio at low cost. 
 
@@ -27,7 +27,7 @@ Same audio, question and options for every model. Unanswered counts as wrong. Ou
 
 | Model | VocalGrad | Speed | Pitch | Volume | $ per 10k questions |
 |---|---|---|---|---|---|
-| egma-homi | 73.9 | 74 | 61 | 87 | 0.12 |
+| homi | 73.9 | 74 | 61 | 87 | 0.12 |
 | Gemini 3.8 Flash | 63.0 | 78 | 56 | 55 | 12.10 |
 | Qwen3-Omni-30B-A3B | 50.3 | 50 | 50 | 50 | 0.11 |
 | Gemini 3.5 Flash-Lite | 50.9 | 51 | 51 | 50 | 1.30 |
@@ -38,7 +38,7 @@ Same audio, question and options for every model. Unanswered counts as wrong. Ou
 | Model | MMSU | Perception | Reasoning | $ per 10k questions |
 |---|---|---|---|---|
 | Gemini 3.8 Flash | 85.7 | 82.4 | 89.2 | 14.80 |
-| egma-homi | 83.1 | 80.4 | 86.0 | 0.28 |
+| homi | 83.1 | 80.4 | 86.0 | 0.28 |
 | Qwen3-Omni-30B-A3B | 72.2 | 60.5 | 84.5 | 0.19 |
 | Gemini 3.5 Flash-Lite | 67.4 | 55.1 | 80.3 | 2.07 |
 | OpenAI gpt-audio | 60.3 | 46.5 | 74.9 | 41.69 |
@@ -52,14 +52,14 @@ questions it did answer it scores 69.5 and 51.2. Raw answers and per-task tables
 
 | Model | VocalGrad ECE | VocalGrad Brier | VocalGrad: accuracy when sure (share sure) | MMSU ECE | MMSU Brier | MMSU: accuracy when sure (share sure) |
 |---|---|---|---|---|---|---|
-| egma-homi | 0.157 | 0.399 | 82.8% (67%) | 0.076 | 0.259 | 91.7% (73%) |
+| homi | 0.157 | 0.399 | 82.8% (67%) | 0.076 | 0.259 | 91.7% (73%) |
 | Gemini 3.8 Flash | 0.237 | 0.570 | 70.2% (37%) | 0.052 | 0.238 | 93.7% (63%) |
 | Qwen3-Omni-30B-A3B | 0.337 | 0.740 | 52.5% (38%) | 0.182 | 0.439 | 84.4% (73%) |
 | Gemini 3.5 Flash-Lite | 0.229 | 0.622 | 55.0% (15%) | 0.133 | 0.512 | 72.1% (14%) |
 | OpenAI gpt-audio | 0.269 | 0.657 | 50.1% (8%) | 0.081 | 0.459 | 84.8% (11%) |
 
 Gemini and OpenAI probabilities are the ones the models report in their answers. gpt-audio is scored only on the
-questions it answered. On VocalGrad, egma-homi is the only model with a
+questions it answered. On VocalGrad, homi is the only model with a
 Brier score better than guessing evenly, but it is overconfident: its most confident answers (98% on average) are
 right 85% of the time. Full tables:
 [`eval/results/CALIBRATION.md`](eval/results/CALIBRATION.md).
@@ -78,7 +78,7 @@ rhyming couplets, reasoning from pauses.
 | `training/` | data loading and mixture, training loop, temperature fit (Modal) |
 | `data/` | one folder per training-data builder, and [`DATA.md`](data/DATA.md) with every source and licence |
 
-Data building, training and evaluation run on [Modal](https://modal.com), using one Volume (`egma-homi`, mounted at
+Data building, training and evaluation run on [Modal](https://modal.com), using one Volume (`homi`, mounted at
 `/vol`).
 
 ## Run it
@@ -89,16 +89,16 @@ You need a GPU with about 70 GB free (bf16).
 pip install torch==2.14.1 transformers==5.18.0 peft==0.21.2 accelerate==1.15.0 safetensors==0.8.0 \
     soundfile==0.14.0 scipy==1.18.1 numpy==2.5.3 huggingface_hub
 
-hf download egma-ai/egma-homi --local-dir egma-homi
+hf download egma-ai/egma-homi --local-dir homi
 
-python egma-homi/predict.py clip.wav
+python homi/predict.py clip.wav
 ```
 
 ```python
-import sys; sys.path.insert(0, "egma-homi")
+import sys; sys.path.insert(0, "homi")
 from predict import AudioDecider
 
-decider = AudioDecider("egma-homi")
+decider = AudioDecider("homi")
 decider.ask("clip.wav", {
     "angry": {"type": "noul", "instructions": "Does the speaker sound angry?"},
     "emotion": {"type": "choice", "instructions": "Which emotion does the speaker express?",
@@ -115,16 +115,16 @@ H200). Load the adapter with `predict.py`; it targets the Qwen3-Omni thinker, so
 
 ```bash
 pip install modal && modal setup
-modal volume put egma-homi egma-homi /models/egma-homi       # the downloaded weights
+modal volume put homi homi /models/homi       # the downloaded weights
 
 modal run eval/modal_eval.py::mmsu --step prepare
-modal run --detach eval/modal_eval.py::mmsu --step run --which egma-homi --adapter-dir /vol/models/egma-homi
+modal run --detach eval/modal_eval.py::mmsu --step run --which homi --adapter-dir /vol/models/homi
 modal run --detach eval/modal_eval.py::mmsu --step run --which qwen-stock,gemini-3.8-flash,gemini-3.5-flash-lite
-modal volume get egma-homi /bench_mmsu ./bench_mmsu
+modal volume get homi /bench_mmsu ./bench_mmsu
 python eval/mmsu_report.py --dir ./bench_mmsu --out MMSU.md
 
 modal run --detach eval/bench_prepare.py::main                # VocalGrad (also VoxParadox, MSU-Bench)
-modal run --detach eval/modal_eval.py::bench --name vocalgrad --which egma-homi --adapter-dir /vol/models/egma-homi
+modal run --detach eval/modal_eval.py::bench --name vocalgrad --which homi --adapter-dir /vol/models/homi
 python eval/bench_report.py --dir ./bench_vocalgrad --name vocalgrad --out VOCALGRAD.md
 ```
 
@@ -192,8 +192,8 @@ Code: Apache-2.0 ([LICENSE](LICENSE), [NOTICE](NOTICE)). Weights: Apache-2.0 on 
 licences ([data/DATA.md](data/DATA.md)).
 
 ```bibtex
-@misc{egma_homi_2026,
-  title        = {egma-homi: typed questions about audio, with probabilities},
+@misc{homi_2026,
+  title        = {homi: typed questions about audio, with probabilities},
   author       = {{Outlier Humans Inc.}},
   year         = {2026},
   howpublished = {\url{https://github.com/egma-ai/egma-homi}}

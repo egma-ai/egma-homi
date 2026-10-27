@@ -22,7 +22,7 @@ FSD50K eval clips are never used. CAL (~3 %) is chosen by whole uploaders, NSynt
 
 ## Run
     modal run --detach data/sb_sounds/modal_build.py::main    # --smoke for a small build; ::verify, ::check_leakage
-Writes `/vol/stageb/sb_sounds/` on the `egma-homi` volume: `items_train.jsonl`, `items_cal.jsonl`, `audio/`, `summary.json`.
+Writes `/vol/stageb/sb_sounds/` on the `homi` volume: `items_train.jsonl`, `items_cal.jsonl`, `audio/`, `summary.json`.
 
 ## Tests
     uv run --python 3.12 --with pytest --with numpy --with scipy --with soundfile pytest data/sb_sounds/tests

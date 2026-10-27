@@ -26,7 +26,7 @@ Needs the raw HVB and robocall copies made by `sb_dialog` and `sb_phone`; TTS us
 
     modal run --detach data/sb_aicall/modal_build.py::full     # ::smoke for a small run, ::check to re-validate
 
-Writes `/vol/stageb/sb_aicall/` on the `egma-homi` volume (`items_train.jsonl`, `items_cal.jsonl`, `audio/`, `summary.json`).
+Writes `/vol/stageb/sb_aicall/` on the `homi` volume (`items_train.jsonl`, `items_cal.jsonl`, `audio/`, `summary.json`).
 
 ## Tests
     uv run --python 3.12 --with pytest --with numpy --with scipy --with soundfile pytest data/sb_aicall/tests

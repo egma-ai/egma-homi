@@ -1,12 +1,12 @@
 """
-Calibration of egma-homi, the base model, Gemini and OpenAI on multiple-choice audio benchmarks in the MMSU layout
+Calibration of homi, the base model, Gemini and OpenAI on multiple-choice audio benchmarks in the MMSU layout
 (truth.jsonl, items<name>.jsonl, runs/q<name>/<system>/...), from the saved answers.
 
     uv run --no-project --python 3.12 --with numpy python eval/calibration_report.py \
         --dir eval/results/mmsu eval/results/vocalgrad --name mmsu vocalgrad \
         --temperature 1.0084233286300535 --out eval/results/CALIBRATION.md
 
-egma-homi = softmax(log_probs / T) at its calibration temperature; the base model at T = 1. API models = the
+homi = softmax(log_probs / T) at its calibration temperature; the base model at T = 1. API models = the
 probabilities they report with their answer, renormalised; a row counts only if every option gets a non-negative
 number. Confidence = probability of the argmax option (ties -> first). ECE uses 15 equal-width bins (lo, hi].
 """
@@ -20,7 +20,7 @@ from pathlib import Path
 
 import numpy as np
 
-SYSTEMS = [("egma-homi", "egma-homi"), ("qwen-stock", "Qwen3-Omni untouched (base)"),
+SYSTEMS = [("homi", "homi"), ("qwen-stock", "Qwen3-Omni untouched (base)"),
            ("gemini:gemini-3.8-flash", "Gemini 3.8 Flash"), ("gemini:gemini-3.5-flash-lite", "Gemini 3.5 Flash-Lite"),
            ("openai:gpt-audio", "OpenAI gpt-audio")]
 TITLES = {"mmsu": "MMSU", "vocalgrad": "VocalGrad"}
@@ -97,7 +97,7 @@ def report(d: Path, name: str, temperature: float) -> list[str]:
         if ":" in s and (base / "responses.jsonl").exists():
             probs, answer_only[s] = load_api(base / "responses.jsonl", truth)
         elif ":" not in s and (base / "preds.jsonl").exists():
-            probs, answer_only[s] = load_ours(base / "preds.jsonl", items, temperature if s == "egma-homi" else 1.0), 0
+            probs, answer_only[s] = load_ours(base / "preds.jsonl", items, temperature if s == "homi" else 1.0), 0
         else:
             continue
         if probs:
@@ -116,10 +116,10 @@ def report(d: Path, name: str, temperature: float) -> list[str]:
           "|---|" + "---|" * len(THRESHOLDS)]
     for s, n in ran:
         L.append(f"| {n} | " + " | ".join(f"{pct(a)} / {pct(b)}" for a, b in res[s]["sel"].values()) + " |")
-    if "egma-homi" in res:
-        L += ["", f"### egma-homi reliability (T = {temperature:.4f}; bins with ≥ {MIN_BIN} questions)", "",
+    if "homi" in res:
+        L += ["", f"### homi reliability (T = {temperature:.4f}; bins with ≥ {MIN_BIN} questions)", "",
               "| confidence bin | n | mean confidence | accuracy |", "|---|---|---|---|"]
-        for k, n, c, a in res["egma-homi"]["bins"]:
+        for k, n, c, a in res["homi"]["bins"]:
             if n >= MIN_BIN:
                 L.append(f"| {k / BINS:.3f}–{(k + 1) / BINS:.3f} | {n} | {pct(c)} | {pct(a)} |")
     return L + [""]
@@ -129,12 +129,12 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--dir", nargs="+", required=True)
     ap.add_argument("--name", nargs="+", required=True)
-    ap.add_argument("--temperature", type=float, required=True, help="egma-homi's calibration temperature")
+    ap.add_argument("--temperature", type=float, required=True, help="homi's calibration temperature")
     ap.add_argument("--out", required=True)
     args = ap.parse_args()
     assert len(args.dir) == len(args.name), "one --name per --dir"
     L = ["# Calibration", "",
-         f"egma-homi: softmax(log-probs / T), T = {args.temperature:.4f} (its calibration temperature); the untouched base "
+         f"homi: softmax(log-probs / T), T = {args.temperature:.4f} (its calibration temperature); the untouched base "
          "model at T = 1. API models: the probabilities they self-report with their answer, renormalised; a row without a "
          "non-negative number for every option is not covered (last column: such rows that still named an answer).",
          "Confidence = probability of the argmax option, which is the answer scored. Accuracy, ECE (15 equal-width bins), "

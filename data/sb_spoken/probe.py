@@ -3,7 +3,7 @@ import modal
 
 image = (modal.Image.debian_slim(python_version="3.12")
          .uv_pip_install("numpy==2.3.3", "pyarrow==21.0.0", "huggingface_hub==0.35.3"))
-volume = modal.Volume.from_name("egma-homi")
+volume = modal.Volume.from_name("homi")
 app = modal.App("sb-spoken-probe")
 
 

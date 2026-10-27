@@ -13,7 +13,7 @@ Whole-call questions about what was said and how the caller felt, labelled from 
 | Source | Use | Licence | Revision |
 |---|---|---|---|
 | HarperValleyBank | whole calls (mono mix + codec copy), human transcripts | CC BY 4.0 | `cricketclub/gridspace-stanford-harper-valley@0bd721e877c4a85d8c13ff837e68661ea6200a98` |
-| Earnings-22 | 20-180 s windows, force-aligned transcripts | CC BY-SA 4.0 (share-alike, flagged; left out of egma-homi training, see DATA.md) | `revdotcom/speech-datasets@c05ab6fd8b4b627d123c922a22a39e993dd37635` |
+| Earnings-22 | 20-180 s windows, force-aligned transcripts | CC BY-SA 4.0 (share-alike, flagged; left out of homi training, see DATA.md) | `revdotcom/speech-datasets@c05ab6fd8b4b627d123c922a22a39e993dd37635` |
 | AMI Meeting Corpus | code path only, not in the published data | CC BY 4.0 | `ami_public_manual_1.6.2` |
 
 Held out: every SLUE-HVB test conversation (`asapp/slue-phase-2@e2989c55a53593a8e39b8f8ebdb47ccaccbe484a`) and every
@@ -22,5 +22,5 @@ HVB call in our evaluation set. CAL (~3%) is conversation-disjoint (HVB) and cal
 ## Run and test
     modal run --detach data/sb_calltext/modal_build.py::full     # prep -> label (1 x H100) -> assemble
     uv run --python 3.12 --with pytest --with numpy --with scipy --with soundfile pytest data/sb_calltext/tests
-The build writes `/vol/stageb/sb_calltext/` on the `egma-homi` volume: `items_train.jsonl`, `items_cal.jsonl`,
+The build writes `/vol/stageb/sb_calltext/` on the `homi` volume: `items_train.jsonl`, `items_cal.jsonl`,
 `audio/`, `summary.json`.

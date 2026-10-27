@@ -16,8 +16,8 @@ INFERENCE = HERE.parent.parent / "inference"
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(INFERENCE))
 
-app = modal.App("egma-homi-stageb-sb-relative")
-volume = modal.Volume.from_name("egma-homi")
+app = modal.App("homi-stageb-sb-relative")
+volume = modal.Volume.from_name("homi")
 
 image = (
     modal.Image.debian_slim(python_version="3.12")

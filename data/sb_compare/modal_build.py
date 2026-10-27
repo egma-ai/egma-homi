@@ -18,8 +18,8 @@ sys.path.insert(0, str(INFERENCE))
 KOKORO_REPO = "hexgrad/Kokoro-82M"
 KOKORO_REV = "f3ff3571791e39611d31c381e3a41a3af07b4987"  # pinned (Apache-2.0), same as data/sb_calls
 
-app = modal.App("egma-homi-stageb-sb-compare")
-volume = modal.Volume.from_name("egma-homi")
+app = modal.App("homi-stageb-sb-compare")
+volume = modal.Volume.from_name("homi")
 
 
 def _code(img):

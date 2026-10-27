@@ -23,8 +23,8 @@ HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE))
 import teacher_core as tc  # noqa: E402
 
-app = modal.App("egma-homi-stageb-teacher")
-volume = modal.Volume.from_name("egma-homi")
+app = modal.App("homi-stageb-teacher")
+volume = modal.Volume.from_name("homi")
 secrets = [modal.Secret.from_name("huggingface")]
 
 OUT = "/vol/stageb/teacher"

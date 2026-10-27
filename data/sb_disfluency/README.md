@@ -26,7 +26,7 @@ CAL uses held-out voices af_nova, am_eric and bf_lily. About 20% of clips get a 
     modal run --detach data/sb_disfluency/modal_build.py::smoke   # small run in /vol/stageb_work/sb_disfluency/smoke
     modal run --detach data/sb_disfluency/modal_build.py::full    # one L4 for TTS, CPU for the rest
 
-Writes `/vol/stageb/sb_disfluency/` on the `egma-homi` volume: `items_train.jsonl`, `items_cal.jsonl`, `audio/`,
+Writes `/vol/stageb/sb_disfluency/` on the `homi` volume: `items_train.jsonl`, `items_cal.jsonl`, `audio/`,
 `summary.json` (written last).
 
 ## Tests

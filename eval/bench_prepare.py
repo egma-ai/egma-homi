@@ -51,8 +51,8 @@ BENCHES = {
                  "bench_evaluation_pipeline/step2_run_scoring/question_builder.py"},
 }
 
-app = modal.App("egma-homi-bench-prep")
-volume = modal.Volume.from_name("egma-homi", create_if_missing=True)
+app = modal.App("homi-bench-prep")
+volume = modal.Volume.from_name("homi", create_if_missing=True)
 image = (modal.Image.debian_slim(python_version="3.12").apt_install("ffmpeg", "ca-certificates")
          .uv_pip_install("numpy==2.5.3", "scipy==1.18.1", "soundfile==0.14.0", "pyarrow==25.0.1", "huggingface_hub==1.33.0")
          .env({"HF_HUB_DISABLE_PROGRESS_BARS": "1", "HF_XET_HIGH_PERFORMANCE": "1"})

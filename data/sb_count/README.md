@@ -24,7 +24,7 @@ sb_speakers instead of this builder's speaker-counting clips, whose length grew 
 ## Run
     modal run --detach data/sb_count/modal_build.py::prep_all   # LibriTTS-R pools + Kokoro announcer (one L4 GPU)
     modal run --detach data/sb_count/modal_build.py::full       # ::smoke for one tiny shard, ::check to re-check
-Writes `/vol/stageb/sb_count/` on the `egma-homi` volume: `items_train.jsonl`, `items_cal.jsonl`, `audio/`, `summary.json`.
+Writes `/vol/stageb/sb_count/` on the `homi` volume: `items_train.jsonl`, `items_cal.jsonl`, `audio/`, `summary.json`.
 
 ## Tests
     uv run --python 3.12 --with pytest --with numpy --with scipy --with soundfile pytest data/sb_count/tests

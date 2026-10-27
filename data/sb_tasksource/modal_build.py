@@ -17,7 +17,7 @@ sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(INFERENCE))
 
 VOL = "/vol"
-volume = modal.Volume.from_name("egma-homi", create_if_missing=False)
+volume = modal.Volume.from_name("homi", create_if_missing=False)
 hf_secret = modal.Secret.from_name("huggingface")
 
 image = (

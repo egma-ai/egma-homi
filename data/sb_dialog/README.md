@@ -25,7 +25,7 @@ all HVB calls in our evaluation set. CAL uses disjoint HVB speakers, AMI meeting
 ## Run
     modal run --detach data/sb_dialog/modal_build.py::full    # ::smoke for a small run, ::prefetch to download only
 
-Output on the `egma-homi` volume: `/vol/stageb/sb_dialog/` (`items_train.jsonl`, `items_cal.jsonl`, `audio/`,
+Output on the `homi` volume: `/vol/stageb/sb_dialog/` (`items_train.jsonl`, `items_cal.jsonl`, `audio/`,
 `summary.json`).
 
 ## Tests

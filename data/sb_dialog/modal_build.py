@@ -32,7 +32,7 @@ AMI_REF = ("AMI Meeting Corpus, official mirror groups.inf.ed.ac.uk/ami (Mix-Hea
 LICENCE = {"hvb": "CC BY 4.0", "ami": "CC BY 4.0", "earnings21": "CC BY-SA 4.0"}
 BUILD_TAG = "v2"  # bank-name suffix, so a rebuild never overwrites banks that are already published
 
-volume = modal.Volume.from_name("egma-homi", create_if_missing=False)
+volume = modal.Volume.from_name("homi", create_if_missing=False)
 _local = ["modal_build.py", "build.py", "labels.py", "questions.py", "hvb.py"]
 
 

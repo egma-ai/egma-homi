@@ -6,7 +6,7 @@
 
 | model | answered | Overall | Perception avg | Reasoning avg | Voice perception (paralinguistic) | Voice reasoning (paralinguistic) | Words & sounds perception | Meaning reasoning | task average (47 tasks) |
 |---|---|---|---|---|---|---|---|---|---|
-| egma-homi | 4981/4981 | 83.1 | 80.4 | 86.0 | 75.3 | 64.8 | 83.7 | 89.4 | 83.3 |
+| homi | 4981/4981 | 83.1 | 80.4 | 86.0 | 75.3 | 64.8 | 83.7 | 89.4 | 83.3 |
 | Qwen3-Omni untouched (our base) | 4981/4981 | 72.2 | 60.5 | 84.5 | 49.4 | 49.6 | 67.8 | 90.1 | 72.5 |
 | Gemini 3.8 Flash | 4980/4981 | 85.7 | 82.4 | 89.2 | 76.1 | 55.8 | 86.4 | 94.6 | 85.9 |
 | Gemini 3.5 Flash-Lite | 4981/4981 | 67.4 | 55.1 | 80.3 | 48.6 | 46.0 | 59.3 | 85.9 | 67.6 |
@@ -16,7 +16,7 @@
 
 | model | MMSU, all | cost per 10,000 questions |
 |---|---|---|
-| egma-homi | 83.1 | $0.28 |
+| homi | 83.1 | $0.28 |
 | Qwen3-Omni untouched (our base) | 72.2 | $0.19 |
 | Gemini 3.8 Flash | 85.7 | $14.80 |
 | Gemini 3.5 Flash-Lite | 67.4 | $2.07 |
@@ -43,7 +43,7 @@ Published numbers come from different setups (they generate a text answer that i
 
 ## 3. Per task (accuracy %)
 
-| task | n | egma-homi | Qwen3-Omni untouched (our base) | Gemini 3.8 Flash | Gemini 3.5 Flash-Lite | OpenAI gpt-audio |
+| task | n | homi | Qwen3-Omni untouched (our base) | Gemini 3.8 Flash | Gemini 3.5 Flash-Lite | OpenAI gpt-audio |
 |---|---|---|---|---|---|---|
 | accent_identification (Perc/Lingui) | 114 | 70 | 49 | 77 | 61 | 50 |
 | consonant_vowel_perception (Perc/Lingui) | 103 | 83 | 86 | 95 | 85 | 87 |

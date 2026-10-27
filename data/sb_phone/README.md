@@ -30,7 +30,7 @@ disjoint MUSAN files and rooms.
     modal run --detach data/sb_phone/modal_build.py::prep    # download and decode the sources once
     modal run --detach data/sb_phone/modal_build.py::build   # --smoke for a ~4 % run
 
-Output on the `egma-homi` volume: `/vol/stageb/sb_phone/` (`items_train.jsonl`, `items_cal.jsonl`, `audio/`,
+Output on the `homi` volume: `/vol/stageb/sb_phone/` (`items_train.jsonl`, `items_cal.jsonl`, `audio/`,
 `summary.json`).
 
 ## Tests

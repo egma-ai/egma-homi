@@ -20,7 +20,7 @@ The teacher was trained on tasksource data, so its accuracy on sb_tasksource ite
     modal run data/teacher/modal_teacher.py::smoke_main         # 50 sb_jade CAL items: accuracy and latency
     modal run --detach data/teacher/modal_teacher.py::main      # sb_jade, then sb_tasksource once it is final
 
-Writes `/vol/stageb/teacher/` on the `egma-homi` volume: `soft_labels.jsonl` (`id`, `probs`, `teacher_acc_gold`),
+Writes `/vol/stageb/teacher/` on the `homi` volume: `soft_labels.jsonl` (`id`, `probs`, `teacher_acc_gold`),
 `summary.json` (written last), `smoke.json` and raw per-shard scores in `parts/`.
 
 ## Tests

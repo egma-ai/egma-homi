@@ -23,7 +23,7 @@ N_SHARDS = 36
 CLIPS_PER_SHARD = 205
 MMSU_TRUTH = f"{VOL}/bench_mmsu/truth.jsonl"   # only its "question" field is read, for the non-equality check
 
-volume = modal.Volume.from_name("egma-homi", create_if_missing=False)
+volume = modal.Volume.from_name("homi", create_if_missing=False)
 
 
 def _code(img):

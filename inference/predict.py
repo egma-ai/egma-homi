@@ -1,5 +1,5 @@
 """
-egma-homi: ask typed questions about an audio clip and get one calibrated probability per option.
+homi: ask typed questions about an audio clip and get one calibrated probability per option.
 
     python predict.py clip.wav                      # three example questions (yes/no, choice, score)
     python predict.py clip.wav --questions q.json   # your own questions (same shape as EXAMPLE_QUESTIONS)
@@ -27,7 +27,7 @@ import common as C  # noqa: E402
 import jev  # noqa: E402
 import readout  # noqa: E402
 
-MODEL_NAME = "egma-homi"
+MODEL_NAME = "homi"
 QWEN_OMNI_ID, QWEN_OMNI_REV = "Qwen/Qwen3-Omni-30B-A3B-Instruct", "26291f793822fb6be9555850f06dfe95f2d7e695"
 EXAMPLE_QUESTIONS = {
     "sounds_angry": {"type": "noul", "instructions": "Does the speaker sound angry?"},
@@ -107,7 +107,7 @@ def main(argv=None) -> None:
     ap.add_argument("audio", help="audio file (any sample rate; mixed down to 16 kHz mono)")
     ap.add_argument("--questions", help="JSON file {name: {type, instructions, criteria}}; default: three examples")
     ap.add_argument("--text", help="optional text context shown with the audio")
-    ap.add_argument("--adapter-dir", default=str(HERE), help="folder with the egma-homi files (default: this folder)")
+    ap.add_argument("--adapter-dir", default=str(HERE), help="folder with the homi files (default: this folder)")
     args = ap.parse_args(argv)
     questions = json.loads(Path(args.questions).read_text()) if args.questions else EXAMPLE_QUESTIONS
     decider = AudioDecider(args.adapter_dir)

@@ -1,6 +1,6 @@
 """
 Scoreboard for a multiple-choice audio benchmark in the MMSU layout (truth.jsonl, items<name>.jsonl,
-runs/q<name>/<system>/...): egma-homi, the base model, Gemini and OpenAI on identical questions.
+runs/q<name>/<system>/...): homi, the base model, Gemini and OpenAI on identical questions.
 
     uv run --python 3.12 --with numpy python eval/bench_report.py --dir <local copy of /vol/bench_<name>> --name <name> \
         --out <NAME>_RESULTS.md
@@ -19,7 +19,7 @@ from pathlib import Path
 
 import numpy as np
 
-SYSTEMS = [("egma-homi", "egma-homi"), ("qwen-stock", "Qwen3-Omni untouched (base)"),
+SYSTEMS = [("homi", "homi"), ("qwen-stock", "Qwen3-Omni untouched (base)"),
            ("gemini:gemini-3.8-flash", "Gemini 3.8 Flash"), ("gemini:gemini-3.5-flash-lite", "Gemini 3.5 Flash-Lite"),
            ("openai:gpt-audio", "OpenAI gpt-audio")]
 PRICES = {"gemini:gemini-3.8-flash": {"audio": 0.75, "text": 0.75, "output": 3.75},  # $ / 1M tokens, 2026-10-21

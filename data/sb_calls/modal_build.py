@@ -22,7 +22,7 @@ KOKORO_REV = "f3ff3571791e39611d31c381e3a41a3af07b4987"  # pinned HF commit (apa
 KOKORO_REF = f"{KOKORO_REPO}@{KOKORO_REV} (Apache-2.0)"
 BANK_CLIPS = 2500  # clips per audio bank (keeps each bank well under 4 GB)
 
-volume = modal.Volume.from_name("egma-homi", create_if_missing=False)
+volume = modal.Volume.from_name("homi", create_if_missing=False)
 
 _local_files = ["modal_build.py", "build.py", "scripts.py", "audio_fx.py"]
 

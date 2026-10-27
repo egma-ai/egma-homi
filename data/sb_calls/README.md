@@ -21,7 +21,7 @@ CAL uses held-out voices (`af_nova`, `am_eric`, `bf_lily`, `bm_lewis`) and the l
 ## Run
     modal run --detach data/sb_calls/modal_build.py::full      # ::smoke for a ~1% run
 
-Writes `/vol/stageb/sb_calls/` on the `egma-homi` volume (`items_train.jsonl`, `items_cal.jsonl`, `audio/`,
+Writes `/vol/stageb/sb_calls/` on the `homi` volume (`items_train.jsonl`, `items_cal.jsonl`, `audio/`,
 `summary.json`). `check_asr.py` (Whisper spot check, `asr_check.json`) and `probe.py` are not part of the build.
 
 ## Tests

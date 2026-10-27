@@ -1,5 +1,5 @@
 """
-MMSU (ICLR 2026, MIT) scoreboard: egma-homi, the base model, Gemini and OpenAI on identical questions, scored in the
+MMSU (ICLR 2026, MIT) scoreboard: homi, the base model, Gemini and OpenAI on identical questions, scored in the
 paper's groups, next to published numbers.
 
     uv run --python 3.12 --with numpy python eval/mmsu_report.py --dir <local copy of /vol/bench_mmsu> --out MMSU.md
@@ -17,7 +17,7 @@ from pathlib import Path
 
 import numpy as np
 
-SYSTEMS = [("egma-homi", "egma-homi"), ("qwen-stock", "Qwen3-Omni untouched (our base)"),
+SYSTEMS = [("homi", "homi"), ("qwen-stock", "Qwen3-Omni untouched (our base)"),
            ("gemini:gemini-3.8-flash", "Gemini 3.8 Flash"), ("gemini:gemini-3.5-flash-lite", "Gemini 3.5 Flash-Lite"),
            ("openai:gpt-audio", "OpenAI gpt-audio")]
 # $ per 1M tokens, paid tier, ai.google.dev/gemini-api/docs/pricing (checked 2026-10-21). 3.8 Flash is a promotional

@@ -1,5 +1,5 @@
 """
-egma-homi training on Modal: base data, data builders (data/), audit, LoRA + decision head on 8 GPUs, temperature.
+homi training on Modal: base data, data builders (data/), audit, LoRA + decision head on 8 GPUs, temperature.
 
     modal run training/modal_train.py::prepare             # base items (CREMA-D, MInDS-14, ...) + Qwen3-Omni weights
     modal run training/modal_train.py::jade                # JADE-Data text decisions -> /vol/stageb/sb_jade
@@ -35,11 +35,11 @@ from recipe import (CKPT_EVERY, DATA_DIR, EFFECTIVE_BATCH, LR, SMOKE_CKPT_EVERY,
                     VOL, all_banks, drop_excluded, fit_and_save_temperature, is_smoke, load_train_items, run_config,
                     run_dir, select_eval_items, stageb_items, valid_items)
 
-VOLUME_NAME = "egma-homi"  # your Modal Volume (created on first use)
+VOLUME_NAME = "homi"  # your Modal Volume (created on first use)
 QWEN_GPU = ["H200", "B200"]
 RETRIES = modal.Retries(max_retries=3, initial_delay=30.0)  # interrupted GPU steps restart (and resume)
 
-app = modal.App("egma-homi-train")
+app = modal.App("homi-train")
 volume = modal.Volume.from_name(VOLUME_NAME, create_if_missing=True)
 image = (
     modal.Image.debian_slim(python_version="3.12")

@@ -20,7 +20,7 @@ OUT = f"{VOL}/stageb/sb_count"
 N_SHARDS = 40
 KOKORO_REPO, KOKORO_REV = "hexgrad/Kokoro-82M", "f3ff3571791e39611d31c381e3a41a3af07b4987"
 
-volume = modal.Volume.from_name("egma-homi", create_if_missing=False)
+volume = modal.Volume.from_name("homi", create_if_missing=False)
 
 
 def _code(img):

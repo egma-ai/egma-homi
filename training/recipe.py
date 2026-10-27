@@ -1,5 +1,5 @@
 """
-The egma-homi training recipe as plain Python (no Modal, no GPU): run configs, builder lists, licence and corpus
+The homi training recipe as plain Python (no Modal, no GPU): run configs, builder lists, licence and corpus
 exclusions, the data mixture, teacher-label blending, batching and the temperature fit.
 Imported by modal_train.py; needs only numpy and inference/common.py on the path.
 

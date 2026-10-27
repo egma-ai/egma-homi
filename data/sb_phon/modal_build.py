@@ -35,7 +35,7 @@ LIC = {
     "text": "all sentences / templates / questions written in code (data/sb_phon/lexicon.py, build.py)",
 }
 
-volume = modal.Volume.from_name("egma-homi", create_if_missing=False)
+volume = modal.Volume.from_name("homi", create_if_missing=False)
 _files = {HERE: ["modal_build.py", "build.py", "lexicon.py", "edit.py"], STAGEB / "sb_phone": ["fx.py"],
           INFERENCE: ["common.py", "answer_codes.json"]}
 

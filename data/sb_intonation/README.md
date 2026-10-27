@@ -23,7 +23,7 @@ channel from `data/sb_phone/fx.py`.
 
 ## Run
     modal run --detach data/sb_intonation/modal_build.py::full   # Kokoro on one L4 GPU, the rest on CPU; ::smoke for a small run
-Writes `/vol/stageb/sb_intonation/` on the `egma-homi` volume: `items_train.jsonl`, `items_cal.jsonl`, `audio/`,
+Writes `/vol/stageb/sb_intonation/` on the `homi` volume: `items_train.jsonl`, `items_cal.jsonl`, `audio/`,
 `summary.json`.
 
 ## Tests

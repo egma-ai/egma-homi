@@ -23,5 +23,5 @@ matches our evaluation set (exact match or a shared 8-word shingle) are dropped.
 ## Run and test
     modal run --detach data/sb_spoken2/modal_build.py::main      # ::smoke for a ~100-item run
     uv run --python 3.12 --with pytest --with numpy --with scipy --with soundfile pytest data/sb_spoken2/tests
-The build writes `/vol/stageb/sb_spoken2/` on the `egma-homi` volume: `items_train.jsonl`, `items_cal.jsonl`,
+The build writes `/vol/stageb/sb_spoken2/` on the `homi` volume: `items_train.jsonl`, `items_cal.jsonl`,
 `audio/`, `summary.json`.

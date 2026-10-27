@@ -126,8 +126,8 @@ def probs_to_answer(qtype: str, keys: list[str], probs, criteria=None) -> dict:
 
 
 def systemone(state, questions: dict, *, model, head, processor, temperature: float = 1.0,
-              model_name: str = "egma-homi") -> dict:
-    """Answer every question about one state through the generic common.encode_batch path. For egma-homi on
+              model_name: str = "homi") -> dict:
+    """Answer every question about one state through the generic common.encode_batch path. For homi on
     Qwen3-Omni use predict.AudioDecider.ask, which returns the same shape. `temperature`: the fitted one."""
     import torch
 

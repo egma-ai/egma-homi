@@ -36,7 +36,7 @@ SOURCES = {
                    "package": "kokoro==0.9.4, misaki[en]==0.9.4"},
 }
 
-volume = modal.Volume.from_name("egma-homi", create_if_missing=False)
+volume = modal.Volume.from_name("homi", create_if_missing=False)
 hf_secret = modal.Secret.from_name("huggingface")
 _local_files = ["modal_build.py", "build.py", "voice_wer.json"]
 

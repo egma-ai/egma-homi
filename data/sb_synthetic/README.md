@@ -31,7 +31,7 @@ calls in our evaluation set are excluded.
     modal run --detach data/sb_synthetic/modal_build.py::gpu        # Parler-TTS and Chatterbox on one L4 GPU
     modal run --detach data/sb_synthetic/modal_build.py::full       # CPU synthesis, waits for ::gpu, writes items
 
-Writes `/vol/stageb/sb_synthetic/` on the `egma-homi` volume: `items_train.jsonl`, `items_cal.jsonl`, `audio/`,
+Writes `/vol/stageb/sb_synthetic/` on the `homi` volume: `items_train.jsonl`, `items_cal.jsonl`, `audio/`,
 `summary.json`.
 
 ## Tests

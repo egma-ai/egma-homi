@@ -15,7 +15,7 @@ INFERENCE = HERE.parent.parent / "inference"
 VOL = "/vol"
 
 app = modal.App("sb-sounds-build")
-volume = modal.Volume.from_name("egma-homi", create_if_missing=False)
+volume = modal.Volume.from_name("homi", create_if_missing=False)
 
 image = (
     modal.Image.debian_slim(python_version="3.12")
