@@ -15,7 +15,7 @@ It is [Qwen3-Omni-30B-A3B-Instruct](https://huggingface.co/Qwen/Qwen3-Omni-30B-A
 decision head in place of the language-model head, 17M parameters of LoRA, and one calibration temperature. It does
 not generate text.
 
-Weights: [`egma-ai/egma-homi`](https://huggingface.co/egma-ai/egma-homi). This repository has the code to run
+Weights: [`egma-ai/homi`](https://huggingface.co/egma-ai/homi). This repository has the code to run
 it, evaluate it, rebuild its training data and train it.
 
 ## Results
@@ -89,7 +89,7 @@ You need a GPU with about 70 GB free (bf16).
 pip install torch==2.14.1 transformers==5.18.0 peft==0.21.2 accelerate==1.15.0 safetensors==0.8.0 \
     soundfile==0.14.0 scipy==1.18.1 numpy==2.5.3 huggingface_hub
 
-hf download egma-ai/egma-homi --local-dir homi
+hf download egma-ai/homi --local-dir homi
 
 python homi/predict.py clip.wav
 ```
@@ -196,6 +196,6 @@ licences ([data/DATA.md](data/DATA.md)).
   title        = {homi: typed questions about audio, with probabilities},
   author       = {{Outlier Humans Inc.}},
   year         = {2026},
-  howpublished = {\url{https://github.com/egma-ai/egma-homi}}
+  howpublished = {\url{https://github.com/egma-ai/homi}}
 }
 ```
