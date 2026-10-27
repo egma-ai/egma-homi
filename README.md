@@ -1,6 +1,6 @@
 # egma-homi: an open decision model for audio 
 
-A pareto frontier open decision model that answers typed questions on a give audio (inspired by Jev).Unlike Jev / Clef/ Pplx-decisder, which only takes in text, home takes an audio and a question - it returns a probability for every option. It beats Gemini flash on vocal grad and has comparable performance on MMSU gemini flash.   
+A pareto frontier open decision model that answers typed questions on a give audio (inspired by Jev).Unlike Jev/Clef/Pplx-decisder, which only takes in text, homi takes an audio and a question - it returns a probability for every option. It beats Gemini flash on vocal grad and has comparable performance on MMSU gemini flash. The model could be used effectively monitoring and evaluating large scale audio at low cost. 
 
 ## Problem 
 A lot of paralinguistic and phonological questions about audio cannot be answered by looking  at transcript. This model natively takes in audio and answer those questions eg 'how does the speaker feel?' with options being angry / happy / sad / fear / disgust. 
