@@ -2,7 +2,7 @@
 
 A Pareto-frontier open decision model that answers typed questions about a given audio clip (inspired by [Jev](https://typesafe.ai/blog/introducing-system-one-models-and-jev)). Unlike
 Jev, [Clef](https://blog.cloudflare.com/clef-decision-models/) and [pplx-decider](https://huggingface.co/perplexity-ai/pplx-decider-v1.1-27b), which only take in text, homi takes an audio clip and a question, and returns a
-probability for every option. It beats [Gemini Flash](https://ai.google.dev/gemini-api/docs/models) on [VocalGrad](https://github.com/ynklab/vocalgrad) and is comparable to Gemini
+probability for every option. It beats Gemini Flash on [VocalGrad](https://github.com/ynklab/vocalgrad) and is comparable to Gemini
 Flash on [MMSU](https://github.com/dingdongwang/MMSU). The model can be used
 for monitoring and evaluating large-scale audio at low cost.
 
