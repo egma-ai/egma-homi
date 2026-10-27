@@ -1,16 +1,23 @@
-# homi: an open decision model for audio 
+# homi: an open decision model for audio
 
-A pareto frontier open decision model that answers typed questions on a give audio (inspired by Jev).Unlike Jev/Clef/Pplx-decisder, which only takes in text, homi takes an audio and a question - it returns a probability for every option. It beats Gemini flash on vocal grad and has comparable performance on MMSU gemini flash. The model could be used effectively monitoring and evaluating large scale audio at low cost. 
+A Pareto-frontier open decision model that answers typed questions about a given audio clip (inspired by Jev). Unlike
+Jev, Clef and pplx-decider, which only take in text, homi takes an audio clip and a question, and returns a probability
+for every option. It beats Gemini Flash on VocalGrad and is comparable to Gemini Flash on MMSU. The model can be used
+for monitoring and evaluating large-scale audio at low cost.
 
-## Problem 
-A lot of paralinguistic and phonological questions about audio cannot be answered by looking  at transcript. This model natively takes in audio and answer those questions eg 'how does the speaker feel?' with options being angry / happy / sad / fear / disgust. 
+## Problem
 
-Just like Jev, there are there options 
+A lot of paralinguistic and phonological questions about audio cannot be answered by looking at a transcript. This
+model takes in audio natively and answers those questions, e.g. "How does the speaker feel?" with the options
+angry / happy / sad / fear / disgust.
+
+Just like Jev, there are three question types:
 - `noul`: yes/no, returns P(yes)
 - `choice`: 2 to 255 options, returns a probability per option
 - `score`: 2 to 10 ordered levels (e.g. slow / normal / fast), returns a probability per level
 
 ## Model
+
 It is [Qwen3-Omni-30B-A3B-Instruct](https://huggingface.co/Qwen/Qwen3-Omni-30B-A3B-Instruct) with frozen weights, a
 decision head in place of the language-model head, 17M parameters of LoRA, and one calibration temperature. It does
 not generate text.
@@ -48,7 +55,7 @@ Same audio, question and options for every model. Unanswered counts as wrong. Ou
 gpt-audio did not answer 13% of MMSU and 34% of VocalGrad (it declined or asked us to "play the audio"); on the
 questions it did answer it scores 69.5 and 51.2. Raw answers and per-task tables: [`eval/results/`](eval/results/).
 
-**Calibration** (does confidence match accuracy?). 
+**Calibration** (does confidence match accuracy?). "Sure" means confidence of at least 0.9.
 
 | Model | VocalGrad ECE | VocalGrad Brier | VocalGrad: accuracy when sure (share sure) | MMSU ECE | MMSU Brier | MMSU: accuracy when sure (share sure) |
 |---|---|---|---|---|---|---|
