@@ -6,7 +6,7 @@ probability for every option. It beats Gemini Flash on [VocalGrad](https://githu
 Flash on [MMSU](https://github.com/dingdongwang/MMSU). The model can be used
 for monitoring and evaluating large-scale audio at low cost.
 
-Weights: [`egma-ai/homi`](https://huggingface.co/egma-ai/homi).
+Weights: [`hf`](https://huggingface.co/egma-ai/homi).
 
 
 ## Problem
