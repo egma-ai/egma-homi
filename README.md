@@ -6,6 +6,8 @@ probability for every option. It beats Gemini Flash on [VocalGrad](https://githu
 Flash on [MMSU](https://github.com/dingdongwang/MMSU). The model can be used
 for monitoring and evaluating large-scale audio at low cost.
 
+Weights: [`egma-ai/homi`](https://huggingface.co/egma-ai/homi).
+
 
 ## Problem
 
@@ -13,10 +15,6 @@ A lot of paralinguistic and phonological questions about audio cannot be answere
 model takes in audio natively and answers those questions, e.g. "How does the speaker feel?" with the options
 angry / happy / sad / fear / disgust.
 
-Just like Jev, there are three question types:
-- `noul`: yes/no, returns P(yes)
-- `choice`: 2 to 255 options, returns a probability per option
-- `score`: 2 to 10 ordered levels (e.g. slow / normal / fast), returns a probability per level
 
 ## Model
 
@@ -26,6 +24,11 @@ not generate text.
 
 Weights: [`egma-ai/homi`](https://huggingface.co/egma-ai/homi). This repository has the code to run
 it, evaluate it, rebuild its training data and train it.
+
+Just like Jev, there are three question types:
+- `noul`: yes/no, returns P(yes)
+- `choice`: 2 to 255 options, returns a probability per option
+- `score`: 2 to 10 ordered levels (e.g. slow / normal / fast), returns a probability per level
 
 ## Results
 
